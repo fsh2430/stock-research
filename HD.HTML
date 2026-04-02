@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HD현대마린엔진 (071970) | Institutional Research Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        
+        /* 반응형 차트 컨테이너 (모바일은 낮게, PC는 높게) */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 250px; /* 모바일 기본 높이 */
+        }
+        @media (min-width: 768px) {
+            .chart-container { height: 350px; max-height: 400px; } /* PC 높이 */
+        }
+        
+        .nav-item.active {
+            background-color: #1e3a8a;
+            color: #ffffff;
+            font-weight: 700;
+        }
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* 커스텀 스크롤바 */
+        ::-webkit-scrollbar { width: 6px; height: 6px; } /* 모바일 가로 스크롤을 위해 height 추가 */
+        ::-webkit-scrollbar-track { background: #f5f5f4; }
+        ::-webkit-scrollbar-thumb { background: #d6d3d1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #a8a29e; }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 antialiased">
+
+    <div class="flex flex-col md:flex-row min-h-screen">
+        
+        <aside class="w-full md:w-64 bg-stone-100 border-b md:border-r md:border-b-0 border-stone-200 flex-shrink-0 flex flex-col md:h-screen md:sticky md:top-0 z-20">
+            <div class="p-4 md:p-6 border-b border-stone-200 bg-stone-100">
+                <h1 class="text-xl md:text-xl font-black text-blue-900 tracking-tight">EQUITY RESEARCH</h1>
+                <p class="text-xs text-stone-500 mt-1 font-medium tracking-wide">HD현대마린엔진 (071970 KS)</p>
+            </div>
+            
+            <nav class="flex flex-row md:flex-col overflow-x-auto md:overflow-y-auto p-2 md:p-4 gap-2 md:space-y-2 whitespace-nowrap bg-stone-100" id="nav-menu">
+                <button data-target="sec-context" class="nav-item flex-shrink-0 text-center md:text-left px-4 py-2 md:py-3 rounded-lg text-sm font-medium text-stone-600 hover:bg-stone-200 transition-colors active">
+                    1. 산업 구조 & BM
+                </button>
+                <button data-target="sec-drivers" class="nav-item flex-shrink-0 text-center md:text-left px-4 py-2 md:py-3 rounded-lg text-sm font-medium text-stone-600 hover:bg-stone-200 transition-colors">
+                    2. 핵심 투자 포인트
+                </button>
+                <button data-target="sec-financials" class="nav-item flex-shrink-0 text-center md:text-left px-4 py-2 md:py-3 rounded-lg text-sm font-medium text-stone-600 hover:bg-stone-200 transition-colors">
+                    3. 실적 & 재무 모델링
+                </button>
+                <button data-target="sec-valuation" class="nav-item flex-shrink-0 text-center md:text-left px-4 py-2 md:py-3 rounded-lg text-sm font-medium text-stone-600 hover:bg-stone-200 transition-colors">
+                    4. 가치 평가
+                </button>
+            </nav>
+            <div class="hidden md:block p-4 border-t border-stone-200 text-xs text-stone-400 text-center mt-auto">
+                Last Updated: 2024.10<br>Sector: 조선/기계
+            </div>
+        </aside>
+
+        <main class="flex-1 bg-stone-50 p-4 md:p-10 relative" id="main-content">
+            
+            <section id="sec-context" class="content-section fade-in block">
+                <div class="max-w-5xl mx-auto">
+                    <h2 class="text-2xl md:text-3xl font-bold text-stone-900 mb-2">1단계: 산업 구조 및 기업 BM 분석</h2>
+                    <p class="text-stone-600 mb-6 md:mb-8 text-base md:text-lg border-l-4 border-blue-900 pl-4">이 섹션은 기업이 속한 거시적 환경과 핵심 수익 창출 원리를 정의합니다. HD그룹 편입 효과와 환경 규제가 만들어낸 구조적 성장기를 분석합니다.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                        <div class="bg-white p-5 md:p-6 rounded-xl shadow-sm border border-stone-200">
+                            <div class="text-3xl md:text-4xl mb-3 md:mb-4">🏆</div>
+                            <h3 class="text-lg font-bold text-blue-900 mb-2">시장 지위 (Position)</h3>
+                            <p class="text-stone-700 text-sm leading-relaxed">
+                                글로벌 선박용 엔진 톱티어. 기존 STX중공업에서 <strong>HD한국조선해양</strong>으로 인수되며 캡티브(Captive) 마켓을 확보했습니다.
+                            </p>
+                        </div>
+                        <div class="bg-white p-5 md:p-6 rounded-xl shadow-sm border border-stone-200">
+                            <div class="text-3xl md:text-4xl mb-3 md:mb-4">🌊</div>
+                            <h3 class="text-lg font-bold text-blue-900 mb-2">성장 동력 (Macro)</h3>
+                            <p class="text-stone-700 text-sm leading-relaxed">
+                                <strong>IMO 2050 규제</strong>가 핵심 트리거입니다. 노후 선박 교체와 맞물려 <strong>이중연료(Dual-Fuel) 친환경 엔진</strong>으로의 슈퍼사이클이 도래했습니다.
+                            </p>
+                        </div>
+                        <div class="bg-white p-5 md:p-6 rounded-xl shadow-sm border border-stone-200">
+                            <div class="text-3xl md:text-4xl mb-3 md:mb-4">⚙️</div>
+                            <h3 class="text-lg font-bold text-blue-900 mb-2">비즈니스 모델 (BM)</h3>
+                            <p class="text-stone-700 text-sm leading-relaxed">
+                                <strong>제조업 + 고수익 AM</strong> 구조입니다. 엔진 조립 외에 선박 생애주기 동안 발생하는 <strong>A/S 매출</strong>이 OPM 20% 이상의 고수익 캐시카우입니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sec-drivers" class="content-section fade-in hidden">
+                <div class="max-w-5xl mx-auto">
+                    <h2 class="text-2xl md:text-3xl font-bold text-stone-900 mb-2">2단계: 핵심 투자 포인트 도출</h2>
+                    <p class="text-stone-600 mb-6 md:mb-8 text-base md:text-lg border-l-4 border-blue-900 pl-4">단순한 테마가 아닌 실제 '숫자'로 증명되는 수혜 논리를 검증합니다.</p>
+
+                    <div class="bg-white p-5 md:p-8 rounded-xl shadow-sm border border-stone-200 mb-6 md:mb-8">
+                        <h3 class="text-lg md:text-xl font-bold text-stone-900 mb-4 md:mb-6 flex flex-wrap items-center gap-2">
+                            <span class="bg-blue-100 text-blue-900 px-3 py-1 rounded-full text-sm">Driver 1</span> 믹스 개선에 따른 ASP 상승
+                        </h3>
+                        <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                            <div class="flex-1 w-full">
+                                <p class="text-stone-700 mb-4 text-sm md:text-base">현재 수주잔고의 대부분이 고부가가치인 이중연료(DF) 엔진으로 채워지고 있습니다. 기존 엔진 대비 판가(ASP)가 높아 이익률 훼손 없이 매출을 끌어올립니다.</p>
+                                <ul class="list-disc list-inside text-sm text-stone-600 space-y-2">
+                                    <li>이중연료 엔진 채택률 업계 평균 상회</li>
+                                    <li>HD현대 그룹과의 공동 R&D 차세대 엔진 선점</li>
+                                </ul>
+                            </div>
+                            <div class="flex-1 w-full">
+                                <div class="chart-container">
+                                    <canvas id="mixChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+                        <div class="bg-white p-5 md:p-6 rounded-xl shadow-sm border border-stone-200">
+                            <h3 class="text-lg font-bold text-stone-900 mb-4 flex items-center">
+                                <span class="bg-blue-100 text-blue-900 px-2 py-1 rounded text-xs mr-2">Driver 2</span> 영업 레버리지
+                            </h3>
+                            <p class="text-stone-700 text-sm mb-4">가동률이 100%에 근접함에 따라 <strong>매출 증가폭보다 이익 증가폭이 가팔라지는 구간</strong>에 진입했습니다.</p>
+                        </div>
+                        <div class="bg-white p-5 md:p-6 rounded-xl shadow-sm border border-stone-200">
+                            <h3 class="text-lg font-bold text-stone-900 mb-4 flex items-center">
+                                <span class="bg-blue-100 text-blue-900 px-2 py-1 rounded text-xs mr-2">Driver 3</span> TAM 확장
+                            </h3>
+                            <p class="text-stone-700 text-sm mb-4">HD현대 그룹 내로 편입되면서 그룹사 물량 엔진 내재화 과정에서 강력한 낙수효과를 받습니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sec-financials" class="content-section fade-in hidden">
+                <div class="max-w-5xl mx-auto">
+                    <h2 class="text-2xl md:text-3xl font-bold text-stone-900 mb-2">3단계: 실적 추정 (Financials)</h2>
+                    <p class="text-stone-600 mb-6 md:mb-8 text-base md:text-lg border-l-4 border-blue-900 pl-4">P(단가) x Q(수량) 로직에 기반한 탑라인 추정과 마진율(OPM) 개선을 시각화합니다.</p>
+
+                    <div class="bg-white p-4 md:p-6 rounded-xl shadow-sm border border-stone-200 mb-6">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-end mb-4 md:mb-6">
+                            <div class="mb-2 md:mb-0">
+                                <h3 class="text-lg md:text-xl font-bold text-stone-900">매출액 및 OPM 추이</h3>
+                            </div>
+                            <div class="text-left md:text-right text-xs text-stone-400">
+                                단위: 십억 원, %
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="financialChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sec-valuation" class="content-section fade-in hidden">
+                <div class="max-w-5xl mx-auto">
+                    <h2 class="text-2xl md:text-3xl font-bold text-stone-900 mb-2">4단계: 가치 평가 (Valuation)</h2>
+                    <p class="text-stone-600 mb-6 md:mb-8 text-base md:text-lg border-l-4 border-blue-900 pl-4">Target Multiple 방식(PER)을 사용하여 적정 주가를 산출합니다.</p>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 mb-8">
+                        <div class="col-span-1 lg:col-span-2 bg-white p-5 md:p-6 rounded-xl shadow-sm border border-stone-200 order-2 lg:order-1">
+                            <h3 class="font-bold text-stone-900 mb-4">가치 평가 방법론</h3>
+                            <div class="space-y-4 text-sm text-stone-700">
+                                <div><strong class="text-blue-900">1. 방법론 (P/E):</strong> 12개월 선행 지배주주순이익 기반의 PER 방식 채택.</div>
+                                <div><strong class="text-blue-900">2. Target Multiple (12.0x):</strong> 글로벌 엔진 Peer 평균 및 프리미엄 반영.</div>
+                                <div><strong class="text-blue-900">3. 주식 희석(Dilution) 반영:</strong> 유상증자 및 전환사채 물량 희석 주식수 반영.</div>
+                            </div>
+                        </div>
+                        <div class="col-span-1 bg-stone-900 text-white p-6 md:p-8 rounded-xl shadow-md flex flex-col justify-center items-center relative overflow-hidden order-1 lg:order-2">
+                            <h3 class="text-stone-300 font-medium mb-1">Base Target Price</h3>
+                            <div class="text-3xl md:text-4xl font-black mb-2" id="display-target-price">22,000<span class="text-base md:text-lg font-normal ml-1">KRW</span></div>
+                            <div class="text-sm text-stone-400 mt-4 flex justify-between w-full border-t border-stone-700 pt-3">
+                                <span>Implied EPS</span>
+                                <span id="display-eps" class="font-bold text-white">1,833 KRW</span>
+                            </div>
+                            <div class="text-sm text-stone-400 flex justify-between w-full mt-2">
+                                <span>Target P/E</span>
+                                <span id="display-pe" class="font-bold text-white">12.0x</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="font-bold text-stone-900 mb-4 text-lg md:text-xl">시나리오 분석 (터치해보세요)</h3>
+                    <div class="flex flex-col md:flex-row gap-3 md:gap-4">
+                        <div class="flex-1 border-2 border-stone-200 rounded-xl p-4 md:p-5 cursor-pointer hover:border-red-400 transition-colors scenario-card" data-scenario="bear">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="bg-red-100 text-red-800 text-[10px] md:text-xs font-bold px-2 py-1 rounded">BEAR CASE</span>
+                                <span class="font-black text-base md:text-lg text-stone-800">14,000 원</span>
+                            </div>
+                            <p class="text-xs text-stone-600 mb-3 hidden md:block">조선업 피크아웃 우려 조기화</p>
+                        </div>
+                        <div class="flex-1 border-2 border-blue-600 bg-blue-50 rounded-xl p-4 md:p-5 cursor-pointer transition-colors scenario-card active-scenario" data-scenario="base">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="bg-blue-600 text-white text-[10px] md:text-xs font-bold px-2 py-1 rounded">BASE CASE</span>
+                                <span class="font-black text-base md:text-lg text-blue-900">22,000 원</span>
+                            </div>
+                            <p class="text-xs text-stone-600 mb-3 hidden md:block">견조한 이중연료 수주</p>
+                        </div>
+                        <div class="flex-1 border-2 border-stone-200 rounded-xl p-4 md:p-5 cursor-pointer hover:border-emerald-500 transition-colors scenario-card" data-scenario="bull">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="bg-emerald-100 text-emerald-800 text-[10px] md:text-xs font-bold px-2 py-1 rounded">BULL CASE</span>
+                                <span class="font-black text-base md:text-lg text-stone-800">30,000 원</span>
+                            </div>
+                            <p class="text-xs text-stone-600 mb-3 hidden md:block">고마진 AM 사업부 급성장</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navItems = document.querySelectorAll('.nav-item');
+            const sections = document.querySelectorAll('.content-section');
+
+            navItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    const targetId = e.target.getAttribute('data-target');
+                    
+                    navItems.forEach(nav => nav.classList.remove('active', 'bg-blue-900', 'text-white'));
+                    navItems.forEach(nav => nav.classList.add('text-stone-600'));
+                    e.target.classList.add('active');
+                    e.target.classList.remove('text-stone-600');
+
+                    sections.forEach(sec => {
+                        sec.classList.add('hidden');
+                        sec.classList.remove('block');
+                    });
+                    const targetSec = document.getElementById(targetId);
+                    targetSec.classList.remove('hidden');
+                    targetSec.classList.add('block');
+                    
+                    // 모바일에서 탭 클릭 시 화면 맨 위로 스크롤
+                    if(window.innerWidth < 768) {
+                        window.scrollTo({top: 0, behavior: 'smooth'});
+                    }
+                });
+            });
+
+            Chart.defaults.font.family = "'Noto Sans KR', sans-serif";
+            Chart.defaults.color = '#57534e';
+
+            // 차트 1
+            const ctxMix = document.getElementById('mixChart').getContext('2d');
+            new Chart(ctxMix, {
+                type: 'doughnut',
+                data: {
+                    labels: ['기존 디젤', '이중연료 (LNG)', '차세대 (Methanol)'],
+                    datasets: [{
+                        data: [35, 55, 10],
+                        backgroundColor: ['#d6d3d1', '#1e3a8a', '#3b82f6'],
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } }
+                    },
+                    cutout: '65%'
+                }
+            });
+
+            // 차트 2
+            const ctxFin = document.getElementById('financialChart').getContext('2d');
+            new Chart(ctxFin, {
+                type: 'bar',
+                data: {
+                    labels: ['2022', '2023', '2024E', '2025E', '2026E'],
+                    datasets: [
+                        {
+                            type: 'line',
+                            label: '영업이익률 (OPM %)',
+                            data: [2.5, 5.8, 9.2, 11.5, 12.8],
+                            borderColor: '#ef4444',
+                            backgroundColor: '#ef4444',
+                            borderWidth: 2,
+                            pointBackgroundColor: '#fff',
+                            yAxisID: 'y1',
+                            tension: 0.3
+                        },
+                        {
+                            type: 'bar',
+                            label: '매출액 (십억원)',
+                            data: [240, 280, 360, 430, 480],
+                            backgroundColor: '#1e3a8a',
+                            borderRadius: 4,
+                            yAxisID: 'y'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: { position: 'top', labels: { usePointStyle: true, boxWidth: 8, font: {size: 11} } }
+                    },
+                    scales: {
+                        y: {
+                            type: 'linear', display: true, position: 'left',
+                            title: { display: window.innerWidth > 768, text: '매출액' }, // 모바일에서는 축 제목 숨김
+                            grid: { color: '#e5e7eb' },
+                            ticks: { font: {size: 10} }
+                        },
+                        y1: {
+                            type: 'linear', display: true, position: 'right',
+                            title: { display: window.innerWidth > 768, text: 'OPM' },
+                            grid: { drawOnChartArea: false },
+                            min: 0, max: 15,
+                            ticks: { font: {size: 10} }
+                        },
+                        x: { grid: { display: false }, ticks: { font: {size: 10} } }
+                    }
+                }
+            });
+
+            // 시나리오 클릭 이벤트
+            const scenarioData = {
+                bear: { price: "14,000", eps: "1,400 KRW", pe: "10.0x", border: "border-red-400", bg: "bg-red-50" },
+                base: { price: "22,000", eps: "1,833 KRW", pe: "12.0x", border: "border-blue-600", bg: "bg-blue-50" },
+                bull: { price: "30,000", eps: "2,000 KRW", pe: "15.0x", border: "border-emerald-500", bg: "bg-emerald-50" }
+            };
+
+            const scenarioCards = document.querySelectorAll('.scenario-card');
+            const displayPrice = document.getElementById('display-target-price');
+            const displayEps = document.getElementById('display-eps');
+            const displayPe = document.getElementById('display-pe');
+
+            scenarioCards.forEach(card => {
+                card.addEventListener('click', (e) => {
+                    const el = e.currentTarget;
+                    const sc = el.getAttribute('data-scenario');
+                    
+                    scenarioCards.forEach(c => {
+                        c.classList.remove('active-scenario', 'border-blue-600', 'bg-blue-50', 'border-red-400', 'bg-red-50', 'border-emerald-500', 'bg-emerald-50');
+                        c.classList.add('border-stone-200', 'bg-white');
+                    });
+                    
+                    el.classList.remove('border-stone-200', 'bg-white');
+                    el.classList.add('active-scenario', scenarioData[sc].border.split('-')[0]+"-"+scenarioData[sc].border.split('-')[1]+"-"+scenarioData[sc].border.split('-')[2], scenarioData[sc].bg);
+                    
+                    displayPrice.innerHTML = `${scenarioData[sc].price}<span class="text-base md:text-lg font-normal ml-1">KRW</span>`;
+                    displayEps.textContent = scenarioData[sc].eps;
+                    displayPe.textContent = scenarioData[sc].pe;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
