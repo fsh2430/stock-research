@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jinsol's Equity Research</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+        body { font-family: 'Noto Sans KR', sans-serif; }
+    </style>
+</head>
+<body class="bg-stone-100 text-stone-800 antialiased min-h-screen flex flex-col">
+
+    <header class="bg-white border-b border-stone-200 sticky top-0 z-10">
+        <div class="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
+            <div>
+                <h1 class="text-2xl font-black text-blue-900 tracking-tight">JINSOL RESEARCH</h1>
+                <p class="text-sm text-stone-500 font-medium">Institutional Grade Dashboard Archive</p>
+            </div>
+            <div class="text-xs font-bold bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
+                Total: 2
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 max-w-6xl mx-auto px-6 py-10 w-full">
+        <div class="mb-8">
+            <h2 class="text-xl font-bold text-stone-900">최신 리포트</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <a href="doosan.html" class="block bg-white rounded-xl shadow-sm hover:shadow-md border border-stone-200 transition-all hover:-translate-y-1 overflow-hidden group">
+                <div class="h-3 bg-blue-900"></div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-xs font-bold bg-stone-100 text-stone-600 px-2 py-1 rounded">기계/에너지</span>
+                        <span class="text-xs text-stone-400">2026.04.03</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-stone-900 mb-1 group-hover:text-blue-700 transition-colors">두산에너빌리티</h3>
+                    <p class="text-sm text-stone-500 font-medium mb-4">034020 KOSPI</p>
+                    <p class="text-sm text-stone-600 line-clamp-2">AI 전력 인프라 르네상스와 글로벌 원전·가스터빈 과점 시장 진입에 따른 기업가치 재평가</p>
+                </div>
+            </a>
+
+            <a href="hd.html" class="block bg-white rounded-xl shadow-sm hover:shadow-md border border-stone-200 transition-all hover:-translate-y-1 overflow-hidden group">
+                <div class="h-3 bg-stone-400 group-hover:bg-blue-900 transition-colors"></div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-xs font-bold bg-stone-100 text-stone-600 px-2 py-1 rounded">조선/기계</span>
+                        <span class="text-xs text-stone-400">2026.04.02</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-stone-900 mb-1 group-hover:text-blue-700 transition-colors">HD현대마린엔진</h3>
+                    <p class="text-sm text-stone-500 font-medium mb-4">071970 KS</p>
+                    <p class="text-sm text-stone-600 line-clamp-2">이중연료 엔진 교체 사이클 및 HD그룹 편입 효과 분석</p>
+                </div>
+            </a>
+
+        </div>
+    </main>
+
+    <footer class="bg-white border-t border-stone-200 mt-auto">
+        <div class="max-w-6xl mx-auto px-6 py-6 text-center text-xs text-stone-400">
+            &copy; 2026 Jinsol Research. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
