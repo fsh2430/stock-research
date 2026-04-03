@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSP (073010.KQ) - Equity Research Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script>
+        // Tailwind Custom Configuration
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        stone: {
+                            50: '#fafaf9',
+                            100: '#f5f5f4',
+                            800: '#292524',
+                            900: '#1c1917',
+                        },
+                        blue: {
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .tab-content { display: none; animation: fadeIn 0.3s ease-in-out; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* 스크롤바 숨김 (모바일 탭용) */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 font-sans antialiased min-h-screen flex flex-col md:flex-row">
+
+    <aside class="w-full md:w-64 bg-stone-100 border-b md:border-r border-stone-200 md:h-screen md:sticky top-0 z-10 flex flex-col">
+        <div class="p-6 border-b border-stone-200 flex items-center justify-between md:block">
+            <div class="group cursor-pointer">
+                <a href="index.html" class="text-3xl font-black text-stone-900 group-hover:text-blue-600 transition-colors duration-300 tracking-tighter">wal!street</a>
+            </div>
+            <div class="md:mt-2 text-xs font-bold text-stone-500 bg-stone-200 px-2 py-1 rounded inline-block">073010.KQ</div>
+        </div>
+        
+        <nav class="flex md:flex-col overflow-x-auto no-scrollbar p-3 md:p-4 gap-2 md:gap-3 bg-stone-100 shadow-inner md:shadow-none">
+            <button onclick="switchTab(1)" id="tabBtn1" class="tab-btn w-full text-left px-4 py-3 rounded-xl text-sm font-bold whitespace-nowrap transition-all duration-200 bg-blue-900 text-white shadow-md">
+                1. 산업 구조 및 BM
+            </button>
+            <button onclick="switchTab(2)" id="tabBtn2" class="tab-btn w-full text-left px-4 py-3 rounded-xl text-sm font-bold whitespace-nowrap transition-all duration-200 text-stone-500 hover:bg-stone-200 hover:text-stone-900">
+                2. 핵심 투자 포인트
+            </button>
+            <button onclick="switchTab(3)" id="tabBtn3" class="tab-btn w-full text-left px-4 py-3 rounded-xl text-sm font-bold whitespace-nowrap transition-all duration-200 text-stone-500 hover:bg-stone-200 hover:text-stone-900">
+                3. 실적 추정 (Financials)
+            </button>
+            <button onclick="switchTab(4)" id="tabBtn4" class="tab-btn w-full text-left px-4 py-3 rounded-xl text-sm font-bold whitespace-nowrap transition-all duration-200 text-stone-500 hover:bg-stone-200 hover:text-stone-900">
+                4. 가치 평가 (Valuation)
+            </button>
+        </nav>
+        
+        <div class="hidden md:block mt-auto p-6 text-xs text-stone-400">
+            &copy; 2026 wal!street Research<br>Strictly Confidential.
+        </div>
+    </aside>
+
+    <main class="flex-1 p-6 md:p-10 w-full max-w-6xl mx-auto">
+        
+        <section id="tab1" class="tab-content active">
+            <h2 class="text-2xl font-black text-stone-900 mb-2">Context Setting</h2>
+            <p class="text-stone-500 font-medium mb-8">친환경 선박 슈퍼사이클과 독과점적 비즈니스 모델의 구조적 결합</p>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-10 h-10 bg-stone-100 rounded-full flex items-center justify-center mb-4">
+                        <span class="text-blue-900 font-black">01</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-stone-900 mb-3">시장 지위 (Market Position)</h3>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        케이에스피는 선박용 중속엔진 밸브 시장에서 60~70%의 압도적 점유율을 차지하고 있습니다. 대형 저속엔진 시장에서도 원천 기술사인 MAN-ES와 WinGD 양사의 까다로운 인증을 모두 획득한 전 세계 단 5개 기업 중 하나로, 수십 년간 축적된 가동 데이터 기반의 강력한 해자(Moat)를 구축했습니다.
+                    </p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-10 h-10 bg-stone-100 rounded-full flex items-center justify-center mb-4">
+                        <span class="text-blue-900 font-black">02</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-stone-900 mb-3">성장 동력 (Macro/Driver)</h3>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        IMO 환경 규제 강화로 인해 글로벌 조선업계는 이중연료(Dual-Fuel) 엔진 도입이라는 불가역적 패러다임 전환을 맞이했습니다. 폭발 온도와 압력이 높은 가혹한 연소 환경을 견디기 위해, ASP가 극도로 높은 프리미엄 초내열 합금인 '니모닉(Nimonic)' 밸브 스핀들 장착이 필수적으로 요구되며 폭발적 낙수효과를 창출합니다.
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-10 h-10 bg-stone-100 rounded-full flex items-center justify-center mb-4">
+                        <span class="text-blue-900 font-black">03</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-stone-900 mb-3">비즈니스 모델 (Business Model)</h3>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        배기밸브는 필연적으로 마모되어 통상 3~5년 주기의 전면 교체가 요구되는 극한의 소모품입니다. 이는 일회성 수주를 넘어선 소프트웨어 구독형 모델과 같은 고마진의 연간 반복 매출(ARR) 구조를 가능케 하며, 원가 통제권을 쥔 전 공정 수직 계열화를 통해 압도적인 락인(Lock-in) 효과를 발휘합니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab2" class="tab-content">
+            <h2 class="text-2xl font-black text-stone-900 mb-2">Key Value Drivers</h2>
+            <p class="text-stone-500 font-medium mb-8">테마를 압도하는 탑라인 팽창과 레버리지 효과</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                <div class="col-span-1 lg:col-span-3 space-y-6">
+                    <div class="bg-white p-6 rounded-2xl border-l-4 border-blue-900 shadow-sm">
+                        <h3 class="text-lg font-bold text-stone-900 mb-2">1. '진짜' 수혜주 감별: 폭발적인 수주잔고와 P의 레벨업</h3>
+                        <p class="text-sm text-stone-600 leading-relaxed">
+                            테마성에 그치지 않고 고객사(HD현대중공업, 한화엔진)의 생산량 증가가 매출로 직결되고 있습니다. 수주잔고는 2020년 115억 원에서 2023년 말 591억 원으로 5.1배 급증했으며, 이중연료 선박 발주 비중(60% 상회) 증가에 따른 초정밀 고부가가치 밸브 수요 확대로 전사 가중평균 판매단가(ASP)가 구조적 우상향을 기록 중입니다.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-2xl border-l-4 border-stone-400 shadow-sm">
+                        <h3 class="text-lg font-bold text-stone-900 mb-2">2. 강력한 영업 레버리지 시현</h3>
+                        <p class="text-sm text-stone-600 leading-relaxed">
+                            과거 강도 높은 구조조정으로 고정비 통제력을 확보한 상태에서 하이엔드 수주가 급증함에 따라, 2024년 16.20%라는 제조업 최상위권의 경이로운 영업이익률을 달성했습니다. 매출이 CapEx를 상회하며 1,000억 원을 돌파하는 구간에서 추가적인 이익률 퀀텀 점프가 가시화될 전망입니다.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border-l-4 border-stone-400 shadow-sm">
+                        <h3 class="text-lg font-bold text-stone-900 mb-2">3. TAM 확장 및 지배구조(Governance) 프리미엄 트리거</h3>
+                        <p class="text-sm text-stone-600 leading-relaxed">
+                            육상 발전 및 K-방산 부문으로의 무한한 시장(TAM) 확장 모멘텀을 보유하고 있습니다. 특히 50.16%를 보유한 최대주주 금강공업의 경영권 지분 매각(M&A)이 가시화될 경우, 과거의 지배구조 디스카운트가 전면 해소되며 독과점 경영권 프리미엄이 주가 리레이팅의 폭발적 트리거로 작용할 것입니다.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-span-1 lg:col-span-2 bg-white p-6 rounded-2xl border border-stone-200 shadow-sm flex flex-col items-center justify-center">
+                    <h4 class="text-sm font-bold text-stone-800 mb-4 self-start">제품 출하 믹스 비중 (이중연료 전환 가속)</h4>
+                    <div class="relative w-full max-w-[280px] aspect-square">
+                        <canvas id="driverChart"></canvas>
+                    </div>
+                    <p class="text-xs text-stone-400 mt-6 text-center">
+                        *프리미엄 니모닉(Dual-Fuel) 및 교체용(A/S) 고마진 파이프라인 비중 과반 이상 상회
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab3" class="tab-content">
+            <h2 class="text-2xl font-black text-stone-900 mb-2">Financial Modeling</h2>
+            <p class="text-stone-500 font-medium mb-8">친환경 믹스 개선에 따른 P와 Q의 동반 상승 궤적</p>
+
+            <div class="bg-white p-6 md:p-8 rounded-2xl border border-stone-200 shadow-sm mb-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                    <div>
+                        <h3 class="text-lg font-bold text-blue-900 mb-4 border-b border-stone-100 pb-2">매출 및 수익 추정 로직</h3>
+                        <ul class="space-y-4 text-sm text-stone-600">
+                            <li><strong class="text-stone-900">Q(수량)의 구조적 증가:</strong> 전방사(HD현대중공업 등)의 3~4년 치 풀가동 수주잔고와 납품 리드타임 감안 시 향후 3년간 CAGR 10% 성장이 확정적. 특히 2020년 건조 선박의 <span class="text-blue-900 font-bold">1차 A/S 교체 사이클(2025년~)</span> 도래로 폭발적 이중 수요 발생.</li>
+                            <li><strong class="text-stone-900">P(단가)의 프리미엄화:</strong> 이중연료용 스핀들은 기존 대비 단가가 30%~100% 이상 높습니다. 전체 발주 시장 내 이중연료 채택률이 50%를 돌파함에 따라 향후 3년간 ASP가 매년 5~7% 우상향할 추세입니다.</li>
+                            <li><strong class="text-stone-900">단기 이익률 조정의 진실:</strong> 2025년 OPM 하락(12.43% 예상)은 펀더멘털 훼손이 아닌 부산 신공장 200억 투자의 <span class="bg-stone-100 px-1">초기 감가상각비(연 약 20억)</span> 반영에 기인합니다. 2026년 매출 1,100억 돌파 시 고정비 분산으로 다시 15%대 이익률로 퀀텀 점프할 것입니다.</li>
+                            <li><strong class="text-stone-900">안정적 원가 기반:</strong> 주요 원재료인 LME 니켈 가격이 과거 3만 불 대에서 벗어나 톤당 1.4만 불 수준으로 하향 안정화되어 우수한 GPM 방어가 유지되고 있습니다.</li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-col h-full min-h-[300px]">
+                        <h4 class="text-sm font-bold text-stone-800 mb-4 text-center">연도별 매출 및 영업이익률 추이 (단위: 억원, %)</h4>
+                        <div class="relative w-full h-full flex-1">
+                            <canvas id="financialChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab4" class="tab-content">
+            <h2 class="text-2xl font-black text-stone-900 mb-2">Valuation & Scenario Analysis</h2>
+            <p class="text-stone-500 font-medium mb-8">EV/EBITDA 기반 가치 산정 및 리스크-업사이드 비대칭 구조</p>
+
+            <div id="val-header" class="bg-blue-900 p-6 md:p-8 rounded-2xl shadow-lg mb-8 flex flex-col md:flex-row justify-between items-start md:items-center transition-all duration-300">
+                <div>
+                    <span class="inline-block px-3 py-1 bg-blue-800 text-blue-200 text-xs font-bold rounded-md mb-2">Base Case (기준 시나리오)</span>
+                    <h3 class="text-blue-100 text-sm font-semibold uppercase tracking-wider mb-1">Target Price (KRW)</h3>
+                    <div class="text-5xl font-black text-white" id="dynamic-price">6,200</div>
+                </div>
+                <div class="mt-4 md:mt-0 flex gap-6 text-left md:text-right">
+                    <div>
+                        <p class="text-blue-200 text-xs font-semibold uppercase">Target EV/EBITDA</p>
+                        <div class="text-2xl font-bold text-white mt-1">8.0x</div>
+                    </div>
+                    <div>
+                        <p class="text-blue-200 text-xs font-semibold uppercase">Implied P/E</p>
+                        <div class="text-2xl font-bold text-white mt-1" id="dynamic-per">21.7x</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm mb-8 text-sm text-stone-600 leading-relaxed">
+                <h4 class="font-bold text-stone-900 mb-2">평가 방법론: EV/EBITDA 및 완전 희석(Fully Diluted) 보정</h4>
+                <p>대규모 설비 투자(200억 원)로 인한 비현금성 감가상각비 발생을 보정하기 위해 EV/EBITDA 방식을 메인으로 채택했습니다. 동종 피어(한화엔진)의 정상화 구간 멀티플(7.9x~14.2x) 및 독과점 진입 장벽을 감안하여 <strong>Target Multiple 8.0x</strong>를 부여합니다. 또한 CB 잠재 물량 전액을 반영한 <strong>완전 희석 주식수 42,928,257주</strong> 및 보수적 순부채(100억)를 가정하여 내재 기업가치 및 타겟 프라이스를 산출했습니다.</p>
+                <p class="mt-2 font-mono bg-stone-100 p-2 rounded text-xs text-stone-800">Target EV = 추정 EBITDA (155억) &times; 8.0x = 1,240억 원 &rarr; Target Equity (1,140억) &rarr; Base Price 도출</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div onclick="selectScenario('bear', this)" class="scenario-card cursor-pointer p-5 rounded-xl border border-stone-200 bg-white hover:border-blue-300 transition-all group">
+                    <div class="flex justify-between items-center mb-3">
+                        <h4 class="font-bold text-stone-800">Bear Case</h4>
+                        <span class="text-xs font-bold text-stone-400 bg-stone-100 px-2 py-1 rounded">최악/하방마진</span>
+                    </div>
+                    <div class="text-2xl font-black text-stone-900 mb-2">3,100<span class="text-sm font-normal text-stone-500"> KRW</span></div>
+                    <p class="text-xs text-stone-500 line-clamp-3">글로벌 해운 침체로 인한 인도 지연 또는 지정학적 리스크발 LME 니켈 원가 비정상 스파이크 발생. P/B 1.2x 하방 지지선 역할.</p>
+                </div>
+                <div onclick="selectScenario('base', this)" class="scenario-card active-card cursor-pointer p-5 rounded-xl border-2 border-blue-900 bg-blue-50/30 transition-all group relative">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-blue-900 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">CURRENT</div>
+                    <div class="flex justify-between items-center mb-3">
+                        <h4 class="font-bold text-blue-900">Base Case</h4>
+                        <span class="text-xs font-bold text-blue-800 bg-blue-100 px-2 py-1 rounded">현실/기준</span>
+                    </div>
+                    <div class="text-2xl font-black text-blue-900 mb-2">6,200<span class="text-sm font-normal text-stone-500"> KRW</span></div>
+                    <p class="text-xs text-stone-600 line-clamp-3">3~4년 치 확보 일감의 정상 건조. 신규 설비 가동에 따른 매출 1,000억 원 돌파 및 영업이익률 15%대 복귀 실현 구간.</p>
+                </div>
+                <div onclick="selectScenario('bull', this)" class="scenario-card cursor-pointer p-5 rounded-xl border border-stone-200 bg-white hover:border-blue-300 transition-all group">
+                    <div class="flex justify-between items-center mb-3">
+                        <h4 class="font-bold text-stone-800">Bull Case</h4>
+                        <span class="text-xs font-bold text-stone-400 bg-stone-100 px-2 py-1 rounded">최상/M&A</span>
+                    </div>
+                    <div class="text-2xl font-black text-stone-900 mb-2">8,000+<span class="text-sm font-normal text-stone-500"> KRW</span></div>
+                    <p class="text-xs text-stone-500 line-clamp-3">IMO 규제 가속으로 니모닉 수요 폭증. 대주주 지분 매각(M&A) 현실화로 지배구조 디스카운트 일거 해소 및 경영권 프리미엄 30% 이상 부여.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // ==========================================
+        // 1. Tab Navigation Logic
+        // ==========================================
+        function switchTab(tabIndex) {
+            // Hide all contents
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            // Reset all buttons style
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('bg-blue-900', 'text-white', 'shadow-md');
+                el.classList.add('text-stone-500', 'hover:bg-stone-200', 'hover:text-stone-900');
+            });
+
+            // Show active content
+            document.getElementById(`tab${tabIndex}`).classList.add('active');
+            
+            // Set active button style
+            const activeBtn = document.getElementById(`tabBtn${tabIndex}`);
+            activeBtn.classList.remove('text-stone-500', 'hover:bg-stone-200', 'hover:text-stone-900');
+            activeBtn.classList.add('bg-blue-900', 'text-white', 'shadow-md');
+        }
+
+        // ==========================================
+        // 2. Chart.js Render
+        // ==========================================
+        document.addEventListener("DOMContentLoaded", () => {
+            // Chart 1: Doughnut (Product Mix)
+            const ctxDriver = document.getElementById('driverChart').getContext('2d');
+            new Chart(ctxDriver, {
+                type: 'doughnut',
+                data: {
+                    labels: ['이중연료(니모닉) & A/S', '디젤(일반 상선)'],
+                    datasets: [{
+                        data: [65, 35], // 기반 데이터: 이중연료 50% 이상, A/S 교체수요 반영 합산
+                        backgroundColor: ['#1e3a8a', '#d6d3d1'],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8, font: { size: 11, family: 'sans-serif' } } },
+                        tooltip: { backgroundColor: '#1c1917', padding: 10 }
+                    }
+                }
+            });
+
+            // Chart 2: Bar + Line Combo (Financials)
+            const ctxFin = document.getElementById('financialChart').getContext('2d');
+            new Chart(ctxFin, {
+                type: 'bar',
+                data: {
+                    labels: ['2024(P)', '2025(E)', '2026(E)'],
+                    datasets: [
+                        {
+                            type: 'line',
+                            label: '영업이익률 (OPM %)',
+                            data: [16.2, 12.4, 15.5],
+                            borderColor: '#ef4444',
+                            backgroundColor: '#ef4444',
+                            borderWidth: 2,
+                            tension: 0.3,
+                            yAxisID: 'y1',
+                            pointBackgroundColor: '#ffffff',
+                            pointBorderWidth: 2,
+                            pointRadius: 5
+                        },
+                        {
+                            type: 'bar',
+                            label: '매출액 (억원)',
+                            data: [853, 955, 1100],
+                            backgroundColor: '#1e3a8a',
+                            borderRadius: 4,
+                            yAxisID: 'y',
+                            barPercentage: 0.5
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: { position: 'top', labels: { usePointStyle: true, boxWidth: 8, font: { size: 11 } } },
+                        tooltip: { backgroundColor: '#1c1917', padding: 10 }
+                    },
+                    scales: {
+                        y: {
+                            type: 'linear', display: true, position: 'left',
+                            grid: { color: '#f5f5f4' },
+                            ticks: { font: { size: 10 } },
+                            suggestedMin: 0, suggestedMax: 1300
+                        },
+                        y1: {
+                            type: 'linear', display: true, position: 'right',
+                            grid: { drawOnChartArea: false },
+                            ticks: { font: { size: 10 }, callback: function(val) { return val + '%' } },
+                            suggestedMin: 0, suggestedMax: 20
+                        },
+                        x: { grid: { display: false }, ticks: { font: { size: 11 } } }
+                    }
+                }
+            });
+        });
+
+        // ==========================================
+        // 3. Valuation Scenario Interactive Logic
+        // ==========================================
+        const scenarios = {
+            bear: { price: "3,100", per: "10.8x", label: "Bear Case (최악/하방마진)", bg: "bg-stone-800", text: "text-stone-800" },
+            base: { price: "6,200", per: "21.7x", label: "Base Case (기준 시나리오)", bg: "bg-blue-900", text: "text-blue-900" },
+            bull: { price: "8,260", per: "28.5x", label: "Bull Case (최상/M&A)", bg: "bg-stone-900", text: "text-stone-900" }
+        };
+
+        function selectScenario(type, element) {
+            // Update Top Header Data
+            const data = scenarios[type];
+            document.getElementById('dynamic-price').innerText = data.price;
+            document.getElementById('dynamic-per').innerText = data.per;
+            
+            // Header Color Transition
+            const header = document.getElementById('val-header');
+            header.className = `${data.bg} p-6 md:p-8 rounded-2xl shadow-lg mb-8 flex flex-col md:flex-row justify-between items-start md:items-center transition-all duration-300`;
+            header.querySelector('span').innerText = data.label;
+
+            // Reset Card Styles
+            document.querySelectorAll('.scenario-card').forEach(card => {
+                card.classList.remove('active-card', 'border-2', 'border-blue-900', 'bg-blue-50/30');
+                card.classList.add('border-stone-200', 'bg-white');
+                card.querySelector('h4').classList.remove('text-blue-900');
+                card.querySelector('h4').classList.add('text-stone-800');
+                const priceDiv = card.querySelector('.text-2xl');
+                priceDiv.classList.remove('text-blue-900');
+                priceDiv.classList.add('text-stone-900');
+                
+                // Remove badge if exists
+                const badge = card.querySelector('.absolute');
+                if(badge) badge.remove();
+            });
+
+            // Set Active Card Style
+            element.classList.remove('border-stone-200', 'bg-white');
+            element.classList.add('active-card', 'border-2', 'border-blue-900', 'bg-blue-50/30');
+            element.querySelector('h4').classList.remove('text-stone-800');
+            element.querySelector('h4').classList.add('text-blue-900');
+            
+            const activePriceDiv = element.querySelector('.text-2xl');
+            activePriceDiv.classList.remove('text-stone-900');
+            activePriceDiv.classList.add('text-blue-900');
+
+            // Add Badge
+            const badgeHtml = `<div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-blue-900 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">SELECTED</div>`;
+            element.insertAdjacentHTML('afterbegin', badgeHtml);
+        }
+    </script>
+</body>
+</html>
