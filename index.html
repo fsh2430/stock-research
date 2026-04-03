@@ -18,8 +18,8 @@
                 <h1 class="text-2xl font-black text-blue-900 tracking-tight">wal!street</h1>
                 <p class="text-sm text-stone-500 font-medium">ai research</p>
             </div>
-            <div class="text-xs font-bold bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
-                Total: 4
+            <div id="total-count" class="text-xs font-bold bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
+                Total: 0
             </div>
         </div>
     </header>
@@ -29,61 +29,8 @@
             <h2 class="text-xl font-bold text-stone-900">최신 리포트</h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            
-            <a href="1.html" class="block bg-white rounded-xl shadow-sm hover:shadow-md border border-stone-200 transition-all hover:-translate-y-1 overflow-hidden group">
-                <div class="h-3 bg-stone-400 group-hover:bg-blue-900 transition-colors"></div>
-                <div class="p-6">
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="text-xs font-bold bg-stone-100 text-stone-600 px-2 py-1 rounded">섹터 입력</span>
-                        <span class="text-xs text-stone-400">2026.04.04</span>
-                    </div>
-                   <h3 class="text-xl font-bold text-blue-600 mb-1 group-hover:text-blue-700 transition-colors">새로운 종목 1</h3>
-                    <p class="text-sm text-stone-500 font-medium mb-4">000000 시장</p>
-                    <p class="text-sm text-stone-600 line-clamp-2">리포트의 핵심 요약 내용을 이곳에 적어주세요.</p>
-                </div>
-            </a>
-
-            <a href="2.html" class="block bg-white rounded-xl shadow-sm hover:shadow-md border border-stone-200 transition-all hover:-translate-y-1 overflow-hidden group">
-                <div class="h-3 bg-stone-400 group-hover:bg-blue-900 transition-colors"></div>
-                <div class="p-6">
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="text-xs font-bold bg-stone-100 text-stone-600 px-2 py-1 rounded">섹터 입력</span>
-                        <span class="text-xs text-stone-400">2026.04.04</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-stone-900 mb-1 group-hover:text-blue-700 transition-colors">새로운 종목 2</h3>
-                    <p class="text-sm text-stone-500 font-medium mb-4">000000 시장</p>
-                    <p class="text-sm text-stone-600 line-clamp-2">리포트의 핵심 요약 내용을 이곳에 적어주세요.</p>
-                </div>
-            </a>
-
-            <a href="3.html" class="block bg-white rounded-xl shadow-sm hover:shadow-md border border-stone-200 transition-all hover:-translate-y-1 overflow-hidden group">
-                <div class="h-3 bg-stone-400 group-hover:bg-blue-900 transition-colors"></div>
-                <div class="p-6">
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="text-xs font-bold bg-stone-100 text-stone-600 px-2 py-1 rounded">섹터 입력</span>
-                        <span class="text-xs text-stone-400">2026.04.04</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-stone-900 mb-1 group-hover:text-blue-700 transition-colors">새로운 종목 3</h3>
-                    <p class="text-sm text-stone-500 font-medium mb-4">000000 시장</p>
-                    <p class="text-sm text-stone-600 line-clamp-2">리포트의 핵심 요약 내용을 이곳에 적어주세요.</p>
-                </div>
-            </a>
-
-            <a href="4.html" class="block bg-white rounded-xl shadow-sm hover:shadow-md border border-stone-200 transition-all hover:-translate-y-1 overflow-hidden group">
-                <div class="h-3 bg-stone-400 group-hover:bg-blue-900 transition-colors"></div>
-                <div class="p-6">
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="text-xs font-bold bg-stone-100 text-stone-600 px-2 py-1 rounded">섹터 입력</span>
-                        <span class="text-xs text-stone-400">2026.04.04</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-stone-900 mb-1 group-hover:text-blue-700 transition-colors">새로운 종목 4</h3>
-                    <p class="text-sm text-stone-500 font-medium mb-4">000000 시장</p>
-                    <p class="text-sm text-stone-600 line-clamp-2">리포트의 핵심 요약 내용을 이곳에 적어주세요.</p>
-                </div>
-            </a>
-
-        </div>
+        <div id="report-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            </div>
     </main>
 
     <footer class="bg-white border-t border-stone-200 mt-auto">
@@ -92,5 +39,42 @@
         </div>
     </footer>
 
+    <script>
+        // 1. 여기에 리포트 정보를 입력하세요. (파일을 만들 때마다 이 리스트만 업데이트하면 됩니다)
+        const reportData = [
+            { id: "1.html", sector: "IT/반도체", date: "2026.04.04", title: "삼성전자", market: "KOSPI", summary: "반도체 업황 회복에 따른 실적 개선 기대감 분석 리포트입니다." },
+            { id: "2.html", sector: "바이오", date: "2026.04.04", title: "셀트리온", market: "KOSPI", summary: "신규 바이오시밀러 승인 및 미국 시장 점유율 확대 전망입니다." },
+            { id: "3.html", sector: "엔터", date: "2026.04.04", title: "하이브", market: "KOSPI", summary: "아티스트 월드투어 재개 및 플랫폼 매출 성장 잠재력 확인." },
+            { id: "4.html", sector: "2차전지", date: "2026.04.04", title: "에코프로비엠", market: "KOSDAQ", summary: "양극재 생산 능력 확대 및 글로벌 완성차 업체와의 계약 현황." }
+        ];
+
+        // 2. 화면에 카드를 그리는 함수
+        function renderReports() {
+            const grid = document.getElementById('report-grid');
+            const totalDisplay = document.getElementById('total-count');
+            
+            // 총 개수 업데이트
+            totalDisplay.innerText = `Total: ${reportData.length}`;
+
+            // 카드 생성
+            grid.innerHTML = reportData.map(report => `
+                <a href="${report.id}" class="block bg-white rounded-xl shadow-sm hover:shadow-md border border-stone-200 transition-all hover:-translate-y-1 overflow-hidden group">
+                    <div class="h-3 bg-stone-400 group-hover:bg-blue-900 transition-colors"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-xs font-bold bg-stone-100 text-stone-600 px-2 py-1 rounded">${report.sector}</span>
+                            <span class="text-xs text-stone-400">${report.date}</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-blue-900 mb-1 group-hover:text-blue-700 transition-colors">${report.title}</h3>
+                        <p class="text-sm text-stone-500 font-medium mb-4">${report.market}</p>
+                        <p class="text-sm text-stone-600 line-clamp-2">${report.summary}</p>
+                    </div>
+                </a>
+            `).join('');
+        }
+
+        // 페이지 로드 시 실행
+        renderReports();
+    </script>
 </body>
 </html>
