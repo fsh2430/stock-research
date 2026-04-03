@@ -1,482 +1,344 @@
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>케이에스피 (073010) 심층 기업 리서치</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Noto Sans KR"', 'sans-serif'],
-                    },
-                    colors: {
-                        slate: { 50: '#f8fafc', 100: '#f1f5f9', 800: '#1e293b', 900: '#0f172a' },
-                        indigo: { 50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 600: '#4f46e5', 700: '#4338ca', 800: '#3730a3', 900: '#312e81' }
-                    }
-                }
-            }
-        }
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <style>
-        body {
-            font-family: 'Noto Sans KR', sans-serif;
-            background-color: #f8fafc;
-            color: #0f172a;
-            overflow-x: hidden;
-        }
-        
-        .slide-up {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        
-        .slide-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .node-arrow::after {
-            content: '➔';
-            position: absolute;
-            right: -24px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #4f46e5;
-            font-size: 1.5rem;
-        }
-        
-        @media (max-width: 768px) {
-            .node-arrow::after {
-                content: '⬇';
-                right: auto;
-                bottom: -28px;
-                top: auto;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-        }
-
-        .timeline-line::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 24px;
-            width: 4px;
-            background-color: #c7d2fe;
-            z-index: 0;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>케이에스피 심층 리서치 프레젠테이션</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+fontFamily: { sans: ['"Noto Sans KR"', 'sans-serif'] },
+colors: {
+slate: { 50: '#f8fafc', 100: '#f1f5f9', 800: '#1e293b', 900: '#0f172a' },
+indigo: { 50: '#eef2ff', 100: '#e0e7ff', 600: '#4f46e5', 700: '#4338ca', 800: '#3730a3', 900: '#312e81' }
+}
+}
+}
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+.slide-up { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+.slide-up.visible { opacity: 1; transform: translateY(0); }
+html { scroll-behavior: smooth; }
+.highlight-col { background-color: #eef2ff; font-weight: 700; color: #312e81; }
+</style>
 </head>
-<body class="antialiased selection:bg-indigo-200 selection:text-indigo-900">
+<body class="bg-slate-50 text-slate-800 font-sans antialiased overflow-x-hidden selection:bg-indigo-200">
 
-    <nav class="fixed top-0 w-full bg-slate-900 text-white flex justify-between items-center px-6 py-4 z-50 shadow-md">
-        <div class="font-bold text-xl tracking-tighter">
-            <a href="index.html">wal!street</a>
-        </div>
-        <div class="text-sm font-medium hover:text-indigo-300 transition-colors">
-            <a href="index.html">← 메인으로</a>
-        </div>
-    </nav>
+<header class="fixed top-0 left-0 w-full z-50 bg-slate-50/90 backdrop-blur-md border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="index.html" class="text-indigo-900 font-black text-xl tracking-tighter">wal!street</a>
+        <a href="index.html" class="text-slate-800 hover:text-indigo-600 font-medium text-sm transition-colors">← 메인으로</a>
+    </div>
+</header>
 
-    <section class="relative bg-indigo-900 text-white min-h-screen flex flex-col justify-center items-center px-4 overflow-hidden pt-16">
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-indigo-300 via-transparent to-transparent"></div>
-        <div class="z-10 text-center max-w-5xl mx-auto slide-up">
-            <span class="inline-block px-4 py-1.5 rounded-full bg-indigo-800 text-indigo-200 font-bold tracking-widest text-sm mb-6 border border-indigo-700 shadow-sm">073010.KQ</span>
-            <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight tracking-tight">케이에스피 <span class="block text-3xl md:text-4xl text-indigo-300 mt-2 font-bold">심층 리서치 보고서</span></h1>
-            <p class="text-xl md:text-2xl text-slate-300 font-light mt-4 bg-indigo-950/50 p-4 rounded-xl border border-indigo-800/50 backdrop-blur-sm">
-                "친환경 선박 슈퍼사이클과 독과점적 비즈니스 모델의 구조적 결합"
-            </p>
-        </div>
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-indigo-400">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
-        </div>
-    </section>
+<section class="min-h-screen flex items-center justify-center bg-indigo-900 text-slate-50 pt-16 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-indigo-500 via-indigo-900 to-transparent"></div>
+    <div class="max-w-5xl mx-auto px-6 z-10 text-center slide-up">
+        <span class="inline-block py-1 px-3 rounded-full bg-indigo-800 text-indigo-100 text-sm font-bold tracking-widest mb-6 border border-indigo-700">073010.KQ KOSDAQ</span>
+        <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight tracking-tight">케이에스피(KSP)<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-200 to-indigo-400">Deep-Dive Analysis</span></h1>
+        <p class="text-xl md:text-2xl text-indigo-100 font-light max-w-3xl mx-auto leading-relaxed">
+            친환경 선박 슈퍼사이클과 글로벌 독과점 비즈니스의 구조적 결합.<br>엔진 밸브 시장의 압도적 해자와 하드웨어 구독 경제(ARR) 모델의 완성.
+        </p>
+    </div>
+</section>
 
-    <section class="py-24 px-6 md:px-12 bg-slate-50 border-b border-slate-200">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-16 text-center slide-up">
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Executive Summary</h2>
-                <div class="w-24 h-1 bg-indigo-600 mx-auto"></div>
+<section class="py-24 max-w-7xl mx-auto px-6">
+    <div class="mb-16 text-center slide-up">
+        <h2 class="text-3xl font-black text-slate-900 mb-4">Executive Summary</h2>
+        <div class="w-16 h-1 bg-indigo-600 mx-auto"></div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-indigo-600 relative overflow-hidden slide-up delay-100 hover:-translate-y-1 transition-transform duration-300">
+            <span class="absolute -top-4 -right-2 text-9xl font-black text-slate-50 opacity-80 select-none">1</span>
+            <div class="relative z-10">
+                <h3 class="text-xl font-bold text-indigo-900 mb-3">글로벌 독과점 진입장벽 구축</h3>
+                <p class="text-slate-600 leading-relaxed">MAN-ES와 WinGD의 제조 인증을 모두 확보한 전 세계 5개사 중 하나입니다. 국내 60~70%의 압도적 점유율을 바탕으로 수십만 시간의 가동 레퍼런스를 통해 신규 진입을 원천 차단하는 해자를 보유하고 있습니다.</p>
+            </div>
+        </div>
+        <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-indigo-600 relative overflow-hidden slide-up delay-200 hover:-translate-y-1 transition-transform duration-300">
+            <span class="absolute -top-4 -right-2 text-9xl font-black text-slate-50 opacity-80 select-none">2</span>
+            <div class="relative z-10">
+                <h3 class="text-xl font-bold text-indigo-900 mb-3">친환경 이중연료 패러다임 수혜</h3>
+                <p class="text-slate-600 leading-relaxed">IMO 환경 규제로 LNG, 메탄올 등 이중연료 엔진 채택이 급증함에 따라 가공 난이도가 높은 고부가가치 초내열 합금(니모닉) 밸브 수요가 폭증하며 판가(P)와 수량(Q)이 동반 상승 중입니다.</p>
+            </div>
+        </div>
+        <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-indigo-600 relative overflow-hidden slide-up delay-300 hover:-translate-y-1 transition-transform duration-300">
+            <span class="absolute -top-4 -right-2 text-9xl font-black text-slate-50 opacity-80 select-none">3</span>
+            <div class="relative z-10">
+                <h3 class="text-xl font-bold text-indigo-900 mb-3">하드웨어 내 반복 매출(ARR) 내재화</h3>
+                <p class="text-slate-600 leading-relaxed">밸브 스핀들은 3~5년 주기로 전면 교체가 필수적인 극한의 소모품입니다. 1회성 건조 수주가 향후 20년간 고마진의 애프터마켓(A/S) 반복 수요로 치환되는 강력한 구독 경제 모델을 완성했습니다.</p>
+            </div>
+        </div>
+        <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-indigo-600 relative overflow-hidden slide-up delay-400 hover:-translate-y-1 transition-transform duration-300">
+            <span class="absolute -top-4 -right-2 text-9xl font-black text-slate-50 opacity-80 select-none">4</span>
+            <div class="relative z-10">
+                <h3 class="text-xl font-bold text-indigo-900 mb-3">강력한 영업 레버리지 및 M&A 모멘텀</h3>
+                <p class="text-slate-600 leading-relaxed">과거 구조조정을 통한 고정비 통제로 매출 증분 대비 이익률이 급증하는 구간에 진입했습니다. 최대주주 금강공업의 지분 매각 시 지배구조 프리미엄과 방산 크로스셀링 확장이 기대됩니다.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-24 bg-slate-100 border-y border-slate-200">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="mb-16 text-center slide-up">
+            <h2 class="text-3xl font-black text-slate-900 mb-4">Business Model Evolution</h2>
+            <div class="w-16 h-1 bg-indigo-600 mx-auto mb-6"></div>
+            <p class="text-slate-600 max-w-2xl mx-auto">단순한 부품 하청을 넘어, 대체 불가능한 기술 해자를 바탕으로 지속 가능한 애프터마켓 생태계를 지배하는 솔루션 기업으로 진화하고 있습니다.</p>
+        </div>
+
+        <div class="flex flex-col md:flex-row items-center justify-between relative slide-up delay-200 max-w-5xl mx-auto">
+            <div class="w-full md:w-1/3 flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-sm border border-slate-200 z-10 relative">
+                <div class="w-16 h-16 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center font-bold text-xl mb-4 shadow-inner">과거</div>
+                <h4 class="font-bold text-slate-800 mb-2">단순 부품 하청 구조</h4>
+                <p class="text-sm text-slate-500">벙커C유 기반 내연기관용 일반 밸브를 생산하며 전방 조선업의 시클리컬 리스크에 그대로 노출됨</p>
+            </div>
+
+            <div class="hidden md:flex flex-1 items-center justify-center z-0 -mx-4">
+                <div class="h-1 w-full bg-gradient-to-r from-slate-300 to-indigo-300 relative">
+                    <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-3 h-3 border-t-2 border-r-2 border-indigo-400 transform rotate-45"></div>
+                </div>
+            </div>
+            <div class="md:hidden h-12 w-1 bg-gradient-to-b from-slate-300 to-indigo-300 relative my-2"></div>
+
+            <div class="w-full md:w-1/3 flex flex-col items-center text-center p-6 bg-indigo-50 rounded-xl shadow-md border border-indigo-200 z-10 relative transform md:-translate-y-4">
+                <div class="w-16 h-16 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-xl mb-4 shadow-lg">현재</div>
+                <h4 class="font-bold text-indigo-900 mb-2">기술 인증 기반 Lock-in</h4>
+                <p class="text-sm text-indigo-700">MAN-ES, WinGD 양대 원천기술사의 까다로운 인증 및 수직계열화 구축으로 신규 진입 원천 차단</p>
+            </div>
+
+            <div class="hidden md:flex flex-1 items-center justify-center z-0 -mx-4">
+                <div class="h-1 w-full bg-gradient-to-r from-indigo-300 to-indigo-600 relative">
+                    <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-3 h-3 border-t-2 border-r-2 border-indigo-600 transform rotate-45"></div>
+                </div>
+            </div>
+            <div class="md:hidden h-12 w-1 bg-gradient-to-b from-indigo-300 to-indigo-600 relative my-2"></div>
+
+            <div class="w-full md:w-1/3 flex flex-col items-center text-center p-6 bg-indigo-900 rounded-xl shadow-xl border border-indigo-800 z-10 relative">
+                <div class="w-16 h-16 rounded-full bg-indigo-100 text-indigo-900 flex items-center justify-center font-bold text-xl mb-4 shadow-inner">미래</div>
+                <h4 class="font-bold text-white mb-2">초고부가가치 ARR 내재화</h4>
+                <p class="text-sm text-indigo-200">친환경 니모닉 밸브 도입으로 단가 점프 및 선박 생애주기에 걸친 애프터마켓 유지보수 수익 창출</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-24 max-w-5xl mx-auto px-6">
+    <div class="mb-12 slide-up">
+        <h2 class="text-3xl font-black text-slate-900 mb-4">Paradigm Shift: 과거 vs 현재</h2>
+        <p class="text-slate-600">환경 규제와 엔진 기술 발전에 따라 변화하는 케이에스피의 비즈니스 지위와 시장 환경 비교</p>
+    </div>
+    
+    <div class="overflow-x-auto rounded-xl shadow-lg border border-slate-200 slide-up delay-200">
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr class="bg-slate-800 text-slate-50 text-sm uppercase tracking-wide">
+                    <th class="p-5 border-b border-slate-700 w-1/4">비교 항목</th>
+                    <th class="p-5 border-b border-slate-700 w-3/8 bg-slate-700">과거 (디젤 엔진 시대)</th>
+                    <th class="p-5 border-b border-slate-700 w-3/8 bg-indigo-700 text-indigo-50">현재/미래 (이중연료 시대)</th>
+                </tr>
+            </thead>
+            <tbody class="text-slate-700">
+                <tr class="border-b border-slate-200 hover:bg-slate-50 transition-colors">
+                    <td class="p-5 font-bold text-slate-900 bg-slate-100">연료 및 엔진 환경</td>
+                    <td class="p-5">벙커C유 (일반적 연소 온도 및 압력)</td>
+                    <td class="p-5 highlight-col">LNG, 암모니아 (폭발적 고온 및 극심한 부식 환경)</td>
+                </tr>
+                <tr class="border-b border-slate-200 hover:bg-slate-50 transition-colors">
+                    <td class="p-5 font-bold text-slate-900 bg-slate-100">주요 요구 소재</td>
+                    <td class="p-5">일반 스틸 (상대적 경쟁 존재, 저단가)</td>
+                    <td class="p-5 highlight-col">초내열 니모닉 합금 (가공 난이도 극상, 고단가 P 상승)</td>
+                </tr>
+                <tr class="border-b border-slate-200 hover:bg-slate-50 transition-colors">
+                    <td class="p-5 font-bold text-slate-900 bg-slate-100">수익 모델 특성</td>
+                    <td class="p-5">신조선 발주에 의존적인 1회성 시클리컬 수주</td>
+                    <td class="p-5 highlight-col">3~5년 단위 전면 교체(Overhaul) 폭증에 따른 ARR 구축</td>
+                </tr>
+                <tr class="hover:bg-slate-50 transition-colors">
+                    <td class="p-5 font-bold text-slate-900 bg-slate-100">타겟 밸류에이션</td>
+                    <td class="p-5">단순 제조업 평균 멀티플 (P/E 5~8배)</td>
+                    <td class="p-5 highlight-col">글로벌 독과점 및 락인 프리미엄 (EV/EBITDA 8배 이상)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="py-24 bg-slate-900 text-slate-50">
+    <div class="max-w-5xl mx-auto px-6">
+        <div class="mb-16 text-center slide-up">
+            <h2 class="text-3xl font-black text-white mb-4">Growth Timeline</h2>
+            <div class="w-16 h-1 bg-indigo-500 mx-auto"></div>
+        </div>
+
+        <div class="relative border-l-2 border-indigo-700 ml-4 md:ml-1/2 space-y-12 slide-up delay-200">
+            <div class="relative pl-8 md:pl-0">
+                <div class="absolute w-4 h-4 bg-indigo-500 rounded-full -left-[9px] md:left-1/2 md:-ml-[9px] top-1 ring-4 ring-slate-900"></div>
+                <div class="md:w-1/2 md:pr-12 md:text-right">
+                    <span class="text-indigo-400 font-black text-xl tracking-wider block mb-2">2020 ~ 2023</span>
+                    <h4 class="text-lg font-bold text-white mb-2">구조조정 및 체질 개선기</h4>
+                    <p class="text-slate-400 text-sm">과거 위기를 극복하며 인력 효율화와 원가 통제를 극한으로 이룩. 수주 잔고가 115억 원에서 591억 원으로 약 5.1배 폭발적으로 팽창하며 턴어라운드 기반 마련.</p>
+                </div>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="relative bg-white p-8 rounded-2xl shadow-lg border border-slate-100 slide-up pt-12">
-                    <div class="absolute -top-6 -left-2 text-8xl font-black text-indigo-50/80 drop-shadow-sm select-none">1</div>
-                    <div class="relative z-10">
-                        <h3 class="text-xl font-bold text-slate-800 mb-3 border-b-2 border-indigo-100 pb-2">글로벌 5대 과점 체제</h3>
-                        <p class="text-slate-600 leading-relaxed text-sm">
-                            MAN-ES, WinGD 인증을 모두 획득한 기업은 전 세계 단 5개사. 수십만 시간의 가동 데이터와 무결점 레퍼런스가 구축한 철옹성 진입장벽.
-                        </p>
-                    </div>
+            <div class="relative pl-8 md:pl-0">
+                <div class="absolute w-4 h-4 bg-red-500 rounded-full -left-[9px] md:left-1/2 md:-ml-[9px] top-1 ring-4 ring-slate-900"></div>
+                <div class="md:w-1/2 md:ml-auto md:pl-12">
+                    <span class="text-red-400 font-black text-xl tracking-wider block mb-2">2024</span>
+                    <h4 class="text-lg font-bold text-white mb-2">영업이익률 퀀텀 점프 원년</h4>
+                    <p class="text-slate-400 text-sm">프리미엄 니모닉 밸브 비중 확대와 고정비 분산 효과 발현. 매출 853억 원, 영업이익 138억 원을 달성하며 단순 제조업을 아득히 뛰어넘는 OPM 16.2% 시현.</p>
                 </div>
-                <div class="relative bg-white p-8 rounded-2xl shadow-lg border border-slate-100 slide-up pt-12" style="transition-delay: 100ms;">
-                    <div class="absolute -top-6 -left-2 text-8xl font-black text-indigo-50/80 drop-shadow-sm select-none">2</div>
-                    <div class="relative z-10">
-                        <h3 class="text-xl font-bold text-slate-800 mb-3 border-b-2 border-indigo-100 pb-2">친환경 패러다임 수혜</h3>
-                        <p class="text-slate-600 leading-relaxed text-sm">
-                            이중연료(Dual-Fuel) 엔진 도입 가속화. 극한의 연소 환경을 견디는 고부가가치 초내열 합금 '니모닉' 밸브 수요의 폭발적 증가 (P & Q 동반 상승).
-                        </p>
-                    </div>
+            </div>
+
+            <div class="relative pl-8 md:pl-0">
+                <div class="absolute w-5 h-5 bg-indigo-400 rounded-full -left-[10px] md:left-1/2 md:-ml-[10px] top-1 ring-4 ring-slate-900 shadow-[0_0_15px_rgba(129,140,248,0.6)]"></div>
+                <div class="md:w-1/2 md:pr-12 md:text-right">
+                    <span class="text-indigo-300 font-black text-2xl tracking-wider block mb-2">2025</span>
+                    <h4 class="text-xl font-bold text-white mb-2">신규 증설 소화 및 교체 사이클 진입</h4>
+                    <p class="text-slate-300 text-sm">부산 지사동 200억 규모 신공장 가동 준비 완료. 선제적 인력/상각비 반영으로 일시적 OPM 조정(12.4%)을 거치나, 1세대 이중연료 선박들의 A/S 교체 물량이 본격화.</p>
                 </div>
-                <div class="relative bg-white p-8 rounded-2xl shadow-lg border border-slate-100 slide-up pt-12" style="transition-delay: 200ms;">
-                    <div class="absolute -top-6 -left-2 text-8xl font-black text-indigo-50/80 drop-shadow-sm select-none">3</div>
-                    <div class="relative z-10">
-                        <h3 class="text-xl font-bold text-slate-800 mb-3 border-b-2 border-indigo-100 pb-2">하드웨어 구독 경제 (ARR)</h3>
-                        <p class="text-slate-600 leading-relaxed text-sm">
-                            선박 엔진 밸브는 필연적 마모로 인해 3~5년 주기 전면 교체 필수. 신조선 인도 랠리가 곧 강력하고 끈끈한 고마진 애프터마켓 유지보수 매출로 자동 전환.
-                        </p>
-                    </div>
-                </div>
-                <div class="relative bg-white p-8 rounded-2xl shadow-lg border border-slate-100 slide-up pt-12" style="transition-delay: 300ms;">
-                    <div class="absolute -top-6 -left-2 text-8xl font-black text-indigo-50/80 drop-shadow-sm select-none">4</div>
-                    <div class="relative z-10">
-                        <h3 class="text-xl font-bold text-slate-800 mb-3 border-b-2 border-indigo-100 pb-2">압도적 영업 레버리지</h3>
-                        <p class="text-slate-600 leading-relaxed text-sm">
-                            과거 구조조정으로 달성한 가벼운 고정비 구조. 매출 증대 시 영업이익이 가파르게 상승하며 '24년 기준 16%대 마진 기록. 신공장 가동 후 퀀텀 점프 기대.
-                        </p>
-                    </div>
+            </div>
+
+            <div class="relative pl-8 md:pl-0">
+                <div class="absolute w-4 h-4 border-2 border-indigo-500 bg-slate-900 rounded-full -left-[9px] md:left-1/2 md:-ml-[9px] top-1 ring-4 ring-slate-900"></div>
+                <div class="md:w-1/2 md:ml-auto md:pl-12">
+                    <span class="text-slate-400 font-black text-xl tracking-wider block mb-2">2026 ~ </span>
+                    <h4 class="text-lg font-bold text-white mb-2">매출 1천억 돌파 및 M&A 모멘텀</h4>
+                    <p class="text-slate-400 text-sm">신조 + 교체 더블 수요 맞물리며 매출 1,100억 고지 돌파 및 OPM 15%대 재진입. 육상 발전, 방산 크로스셀링 확대와 최대주주 지분 매각 프리미엄 현실화 구간.</p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="py-24 px-6 md:px-12 bg-white border-b border-slate-200">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-16 text-center slide-up">
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Value Chain & Business Model</h2>
-                <p class="text-slate-500 font-medium">전 공정 수직 계열화 및 선순환 교체 사이클</p>
-                <div class="w-24 h-1 bg-indigo-600 mx-auto mt-4"></div>
+<section class="py-24 bg-slate-50">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="mb-16 text-center slide-up">
+            <h2 class="text-3xl font-black text-slate-900 mb-4">Financial Projection & Valuation</h2>
+            <div class="w-16 h-1 bg-indigo-600 mx-auto"></div>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-lg border border-slate-200 mb-16 slide-up delay-200">
+            <div class="mb-6 text-center">
+                <h3 class="text-lg font-bold text-slate-800">매출액 및 영업이익률(OPM) 추이</h3>
+                <p class="text-xs text-slate-500">단위: 십억 원 (막대), % (선)</p>
             </div>
-
-            <div class="flex flex-col md:flex-row items-center justify-between gap-y-12 gap-x-6 relative slide-up">
-                <div class="relative w-full md:w-1/4 bg-slate-50 border border-slate-200 rounded-xl p-6 text-center shadow-sm md:node-arrow z-10 group hover:border-indigo-400 transition-colors">
-                    <div class="w-16 h-16 mx-auto bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center mb-4 font-bold text-xl group-hover:bg-indigo-600 group-hover:text-white transition-colors">1</div>
-                    <h4 class="font-bold text-slate-800 mb-2">특수 원재료 조달</h4>
-                    <p class="text-xs text-slate-500">초내열 합금 (니모닉, 니켈) 안정적 수급 및 원가 통제</p>
-                </div>
-                
-                <div class="relative w-full md:w-1/4 bg-slate-50 border border-slate-200 rounded-xl p-6 text-center shadow-sm md:node-arrow z-10 group hover:border-indigo-400 transition-colors">
-                    <div class="w-16 h-16 mx-auto bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center mb-4 font-bold text-xl group-hover:bg-indigo-600 group-hover:text-white transition-colors">2</div>
-                    <h4 class="font-bold text-slate-800 mb-2">독보적 자체 공정</h4>
-                    <p class="text-xs text-slate-500">마찰압접, 특수 단조, 정밀 가공 등 100% 자체 수직 계열화 (마진 극대화)</p>
-                </div>
-
-                <div class="relative w-full md:w-1/4 bg-slate-50 border border-slate-200 rounded-xl p-6 text-center shadow-sm md:node-arrow z-10 group hover:border-indigo-400 transition-colors">
-                    <div class="w-16 h-16 mx-auto bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center mb-4 font-bold text-xl group-hover:bg-indigo-600 group-hover:text-white transition-colors">3</div>
-                    <h4 class="font-bold text-slate-800 mb-2">원청/조선사 납품</h4>
-                    <p class="text-xs text-slate-500">HD현대, 한화엔진 등 글로벌 선박 내 60~70% 점유율 선점 탑재</p>
-                </div>
-
-                <div class="relative w-full md:w-1/4 bg-indigo-50 border-2 border-indigo-400 rounded-xl p-6 text-center shadow-md z-10">
-                    <div class="w-16 h-16 mx-auto bg-indigo-600 text-white rounded-full flex items-center justify-center mb-4 font-bold text-xl shadow-lg">∞</div>
-                    <h4 class="font-bold text-indigo-900 mb-2">A/S 및 교체 사이클</h4>
-                    <p class="text-xs text-indigo-700 font-medium">3~5년 주기 유지보수 도래<br>고마진 반복 매출(ARR) 발생</p>
-                </div>
+            <div class="relative h-80 w-full">
+                <canvas id="financialChart"></canvas>
             </div>
         </div>
-    </section>
 
-    <section class="py-24 px-6 md:px-12 bg-slate-50 border-b border-slate-200">
-        <div class="max-w-5xl mx-auto">
-            <div class="mb-12 text-center slide-up">
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Product Paradigm Shift</h2>
-                <p class="text-slate-500 font-medium">거시적 환경 규제에 따른 핵심 제품군의 믹스 변화</p>
-                <div class="w-24 h-1 bg-indigo-600 mx-auto mt-4"></div>
+        <div class="mb-8 text-center slide-up delay-300">
+            <h3 class="text-2xl font-bold text-slate-900 mb-2">Valuation Scenarios</h3>
+            <p class="text-slate-600 text-sm">Target EV/EBITDA 8.0x 및 완전 희석 주식수(CB 포함)를 반영한 3단계 보수적 밸류에이션</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end slide-up delay-400">
+            <div class="bg-white rounded-xl shadow border border-slate-200 p-6 flex flex-col items-center text-center opacity-90 h-full justify-between">
+                <div>
+                    <span class="text-slate-500 font-bold uppercase text-xs tracking-widest mb-1 block">Bear Case</span>
+                    <h4 class="text-slate-800 font-black text-2xl mb-4">3,100 KRW</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">지정학적 리스크로 인한 LME 니켈 가격 비정상 스파이크 및 해운 물동량 급감으로 단기 펀더멘탈 훼손. 장부가치에 수렴.</p>
+                </div>
+                <div class="w-full bg-slate-100 text-slate-500 text-xs py-2 rounded font-medium">하방 안전 마진 P/B 1.2x 한계선</div>
             </div>
 
-            <div class="overflow-x-auto rounded-2xl shadow-lg slide-up border border-slate-200 bg-white">
-                <table class="w-full text-left border-collapse">
-                    <thead>
-                        <tr>
-                            <th class="py-5 px-6 bg-slate-100 font-bold text-slate-600 border-b border-slate-200 w-1/4">비교 항목</th>
-                            <th class="py-5 px-6 bg-slate-50 font-bold text-slate-800 border-b border-slate-200 w-1/3 text-center">전통 내연기관 밸브<br><span class="text-sm font-normal text-slate-500">(벙커C유 등 화석 연료)</span></th>
-                            <th class="py-5 px-6 bg-indigo-600 font-bold text-white border-b border-indigo-700 w-5/12 text-center shadow-inner relative overflow-hidden">
-                                <div class="absolute inset-0 bg-white opacity-10 rotate-12 scale-150 transform translate-x-1/2"></div>
-                                차세대 이중연료 밸브<br><span class="text-sm font-light text-indigo-200">(LNG, 메탄올, 암모니아)</span>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-slate-700">
-                        <tr class="hover:bg-slate-50 transition-colors">
-                            <td class="py-4 px-6 border-b border-slate-100 font-semibold text-slate-800">주요 소재</td>
-                            <td class="py-4 px-6 border-b border-slate-100 text-center">일반 스틸 (Steel)</td>
-                            <td class="py-4 px-6 border-b border-indigo-100 bg-indigo-50/50 text-center font-bold text-indigo-900">초내열 특수 합금 '니모닉(Nimonic)'</td>
-                        </tr>
-                        <tr class="hover:bg-slate-50 transition-colors">
-                            <td class="py-4 px-6 border-b border-slate-100 font-semibold text-slate-800">연소 환경</td>
-                            <td class="py-4 px-6 border-b border-slate-100 text-center text-sm">일반적인 폭발 온도 및 압력</td>
-                            <td class="py-4 px-6 border-b border-indigo-100 bg-indigo-50/50 text-center text-sm font-medium text-indigo-800">폭발 온도/압력 급상승 및 극심한 부식 유발</td>
-                        </tr>
-                        <tr class="hover:bg-slate-50 transition-colors">
-                            <td class="py-4 px-6 border-b border-slate-100 font-semibold text-slate-800">가공 난이도</td>
-                            <td class="py-4 px-6 border-b border-slate-100 text-center text-sm">보통</td>
-                            <td class="py-4 px-6 border-b border-indigo-100 bg-indigo-50/50 text-center text-sm font-medium text-indigo-800">극도로 높음 (원천 기술사 승인 필수)</td>
-                        </tr>
-                        <tr class="hover:bg-slate-50 transition-colors">
-                            <td class="py-4 px-6 border-b border-slate-100 font-semibold text-slate-800">교체 주기 (A/S)</td>
-                            <td class="py-4 px-6 border-b border-slate-100 text-center text-sm">표준 주기</td>
-                            <td class="py-4 px-6 border-b border-indigo-100 bg-indigo-50/50 text-center text-sm font-medium text-indigo-800">가혹 환경으로 인한 주기 단축 (수요 가속)</td>
-                        </tr>
-                        <tr>
-                            <td class="py-4 px-6 font-bold text-slate-900 bg-slate-50">판매 단가 (ASP)</td>
-                            <td class="py-4 px-6 text-center bg-slate-50">Base Price (100)</td>
-                            <td class="py-4 px-6 bg-indigo-100 text-center font-black text-indigo-700 text-lg shadow-inner">
-                                최소 +30% ~ 최대 2배 이상 프리미엄
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="bg-indigo-50 rounded-xl shadow-2xl border-2 border-indigo-600 p-8 flex flex-col items-center text-center transform md:scale-105 z-10 h-full justify-between relative overflow-hidden">
+                <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-indigo-400 to-indigo-700"></div>
+                <div>
+                    <span class="text-indigo-600 font-black uppercase text-sm tracking-widest mb-1 block">Base Case</span>
+                    <h4 class="text-indigo-900 font-black text-3xl mb-4">6,200 KRW</h4>
+                    <p class="text-indigo-800 text-sm leading-relaxed mb-6 font-medium">이중연료 엔진 탑재 점진적 증가 및 신규 CapEx 정상 소화. 선박 교체수요와 맞물려 매출 1천억 돌파 및 OPM 15%대 회복 시현.</p>
+                </div>
+                <div class="w-full bg-indigo-600 text-white text-sm py-3 rounded-lg font-bold shadow-md">내재가치 펀더멘털 기반 정조준</div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow border border-slate-200 p-6 flex flex-col items-center text-center opacity-90 h-full justify-between">
+                <div>
+                    <span class="text-indigo-400 font-bold uppercase text-xs tracking-widest mb-1 block">Bull Case</span>
+                    <h4 class="text-indigo-900 font-black text-2xl mb-4">8,000+ KRW</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">니모닉 밸브 믹스 폭증 및 최대주주(금강공업)의 경영권 매각 확정 시, M&A 프리미엄이 부가되어 지배구조 디스카운트 일거 해소.</p>
+                </div>
+                <div class="w-full bg-indigo-100 text-indigo-700 text-xs py-2 rounded font-bold">M&A 독과점 경영권 프리미엄 폭발</div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="py-24 px-6 md:px-12 bg-white border-b border-slate-200">
-        <div class="max-w-4xl mx-auto">
-            <div class="mb-16 text-center slide-up">
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Growth Timeline & Cycle</h2>
-                <p class="text-slate-500 font-medium">과거의 체질 개선이 만들어낸 구조적 우상향 궤적</p>
-                <div class="w-24 h-1 bg-indigo-600 mx-auto mt-4"></div>
-            </div>
+<footer class="bg-slate-900 text-slate-500 text-center py-8 text-xs">
+    <div class="max-w-5xl mx-auto px-6">
+        <p>본 자료는 기관 투자자용 웹 프레젠테이션으로 제작되었으며, 미래에 대한 추정치를 포함하고 있어 실제 결과와 다를 수 있습니다.</p>
+        <p class="mt-2">&copy; 2026 wal!street Research. All rights reserved.</p>
+    </div>
+</footer>
 
-            <div class="relative timeline-line slide-up">
-                
-                <div class="relative pl-16 py-6 group">
-                    <div class="absolute left-4 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-slate-200 border-4 border-white shadow-sm group-hover:bg-indigo-400 group-hover:scale-125 transition-all z-10"></div>
-                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-sm transition-transform group-hover:-translate-y-1">
-                        <span class="text-indigo-600 font-bold text-lg mb-1 block">2016</span>
-                        <h4 class="font-bold text-slate-800 text-xl mb-2">구조조정 및 체질 개선</h4>
-                        <p class="text-slate-600 text-sm">기업 회생 및 금강공업 편입 과정에서 부실 상각 및 인력 효율화 달성. 현재의 강력한 '레버리지 효과'를 견인하는 극도의 고정비 통제 베이스 완성.</p>
-                    </div>
-                </div>
-
-                <div class="relative pl-16 py-6 group">
-                    <div class="absolute left-4 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-indigo-300 border-4 border-white shadow-sm group-hover:bg-indigo-500 group-hover:scale-125 transition-all z-10"></div>
-                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-sm transition-transform group-hover:-translate-y-1">
-                        <span class="text-indigo-600 font-bold text-lg mb-1 block">2020 ~ 2023</span>
-                        <h4 class="font-bold text-slate-800 text-xl mb-2">친환경 사이클 본격화 & 수주 폭발</h4>
-                        <p class="text-slate-600 text-sm">1세대 친환경 선박 대거 인도 시작. 이중연료 엔진 채택률 급증으로 수주잔고가 115억('20)에서 591억('23)으로 약 5.1배 팽창.</p>
-                    </div>
-                </div>
-
-                <div class="relative pl-16 py-6 group">
-                    <div class="absolute left-4 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-indigo-600 border-4 border-white shadow-sm group-hover:bg-indigo-700 group-hover:scale-125 transition-all z-10"></div>
-                    <div class="bg-indigo-50 p-6 rounded-xl border border-indigo-200 shadow-md transition-transform group-hover:-translate-y-1">
-                        <span class="text-indigo-700 font-bold text-lg mb-1 block">2024 (현재)</span>
-                        <h4 class="font-bold text-indigo-900 text-xl mb-2">영업 레버리지 발현 국면</h4>
-                        <p class="text-indigo-800 text-sm">프리미엄 니모닉 밸브 믹스 극대화. 전방 고객사(HD현대, 한화엔진) 낙수 효과로 매출 853억, 경이로운 영업이익률 16.2% 시현 증명.</p>
-                    </div>
-                </div>
-
-                <div class="relative pl-16 py-6 group">
-                    <div class="absolute left-4 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-indigo-900 border-4 border-white shadow-sm group-hover:scale-125 transition-all z-10"></div>
-                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-lg transition-transform group-hover:-translate-y-1 text-slate-100">
-                        <span class="text-indigo-300 font-bold text-lg mb-1 block">2025 ~ 2026+</span>
-                        <h4 class="font-bold text-white text-xl mb-2">A/S 빅사이클 + CapEx 증설 돌파</h4>
-                        <p class="text-slate-300 text-sm">초기 인도 친환경 선박들의 교체 수리 빅사이클 도래. 부산 신공장 가동을 통한 외형 성장(매출 1,000억 돌파) 및 방산/발전 등 TAM 무한 확장.</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 px-6 md:px-12 bg-slate-50 border-b border-slate-200 pb-32">
-        <div class="max-w-6xl mx-auto">
-            <div class="mb-16 text-center slide-up">
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Financials & Valuation</h2>
-                <p class="text-slate-500 font-medium">영업 레버리지 트렌드 및 내재 가치 시나리오</p>
-                <div class="w-24 h-1 bg-indigo-600 mx-auto mt-4"></div>
-            </div>
-
-            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-slate-200 mb-16 slide-up max-w-4xl mx-auto">
-                <h3 class="text-lg font-bold text-slate-800 mb-4 text-center">연도별 매출액 및 영업이익률 추이 및 전망</h3>
-                <div class="relative h-[300px] md:h-[400px] w-full">
-                    <canvas id="financialChart"></canvas>
-                </div>
-                <p class="text-xs text-slate-400 mt-4 text-center">* 2025년 OPM 일시 조정은 신공장 가동에 따른 초기 감가상각비(D&A) 반영에 기인한 건전한 마진 축소임.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 slide-up">
-                
-                <div class="bg-slate-100 rounded-xl p-6 border border-slate-200 flex flex-col items-center text-center">
-                    <div class="px-3 py-1 bg-slate-200 text-slate-600 text-xs font-bold rounded-full mb-4">Bear Case</div>
-                    <h4 class="text-slate-500 font-medium mb-1">안전 마진 (하단 지지선)</h4>
-                    <div class="text-3xl font-black text-slate-700 mb-4">₩ 3,100</div>
-                    <ul class="text-sm text-slate-600 text-left w-full space-y-2">
-                        <li class="flex items-start"><span class="mr-2 text-slate-400">•</span> 거시 경제 침체에 따른 인도 지연</li>
-                        <li class="flex items-start"><span class="mr-2 text-slate-400">•</span> 니켈 가격 급등으로 인한 일시 마진 훼손</li>
-                        <li class="flex items-start"><span class="mr-2 text-slate-400">•</span> 청산가치 근접 P/B 1.2x 수렴 구간</li>
-                    </ul>
-                </div>
-
-                <div class="bg-white rounded-2xl p-8 border-4 border-indigo-600 shadow-2xl transform md:-translate-y-4 flex flex-col items-center text-center relative z-10">
-                    <div class="absolute -top-4 bg-indigo-600 text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-md">Base Case (Target)</div>
-                    <h4 class="text-indigo-800 font-bold mb-1 mt-2">안정적 외형 확장 & 이익 정상화</h4>
-                    <div class="text-5xl font-black text-indigo-600 mb-6 mt-2">₩ 6,200</div>
-                    <ul class="text-sm text-slate-700 text-left w-full space-y-3 font-medium">
-                        <li class="flex items-start"><span class="mr-2 text-indigo-500">✓</span> 기확보 수주잔고 바탕 차질없는 건조</li>
-                        <li class="flex items-start"><span class="mr-2 text-indigo-500">✓</span> 신공장 가동 정상화 및 매출 1천억 돌파</li>
-                        <li class="flex items-start"><span class="mr-2 text-indigo-500">✓</span> 영업이익률 15% 복귀 (초기 감가상각 상쇄)</li>
-                        <li class="flex items-start"><span class="mr-2 text-indigo-500">✓</span> Target EV/EBITDA 8.0x 보수적 적용</li>
-                    </ul>
-                </div>
-
-                <div class="bg-indigo-50 rounded-xl p-6 border border-indigo-100 flex flex-col items-center text-center">
-                    <div class="px-3 py-1 bg-indigo-200 text-indigo-800 text-xs font-bold rounded-full mb-4">Bull Case</div>
-                    <h4 class="text-indigo-800 font-medium mb-1">M&A 및 규제 가속</h4>
-                    <div class="text-3xl font-black text-indigo-700 mb-4">₩ 8,000+</div>
-                    <ul class="text-sm text-indigo-900/80 text-left w-full space-y-2">
-                        <li class="flex items-start"><span class="mr-2 text-indigo-400">•</span> 해양 규제 가속, 초고가 니모닉 믹스 폭증</li>
-                        <li class="flex items-start"><span class="mr-2 text-indigo-400">•</span> 최대주주 지분 매각 현실화 및 피인수</li>
-                        <li class="flex items-start"><span class="mr-2 text-indigo-400">•</span> 경영권 프리미엄 및 지배구조 디스카운트 해소</li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-slate-900 text-slate-500 text-center py-8 text-sm">
-        <p>&copy; 2026 wal!street Senior Equity Research. All rights reserved.</p>
-        <p class="mt-2 text-xs opacity-50">본 자료는 기관 투자자 대상 프레젠테이션용으로 요약 재구성되었습니다.</p>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Intersection Observer for Slide-up animation
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.15
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.slide-up').forEach((el) => {
-                observer.observe(el);
-            });
-
-            // Chart.js Initialization
-            const ctx = document.getElementById('financialChart').getContext('2d');
-            
-            // gradient for bar chart
-            const barGradient = ctx.createLinearGradient(0, 0, 0, 400);
-            barGradient.addColorStop(0, 'rgba(79, 70, 229, 0.8)'); // indigo-600
-            barGradient.addColorStop(1, 'rgba(79, 70, 229, 0.2)');
-
-            new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['2024A', '2025E', '2026E'],
-                    datasets: [
-                        {
-                            label: '매출액 (억원)',
-                            data: [853, 955, 1100],
-                            backgroundColor: barGradient,
-                            borderColor: '#4f46e5',
-                            borderWidth: 1,
-                            borderRadius: 6,
-                            order: 2,
-                            yAxisID: 'y'
-                        },
-                        {
-                            label: '영업이익률 (%)',
-                            data: [16.20, 12.43, 15.50],
-                            type: 'line',
-                            borderColor: '#f59e0b', // amber-500
-                            backgroundColor: '#f59e0b',
-                            borderWidth: 3,
-                            pointBackgroundColor: '#fff',
-                            pointBorderColor: '#f59e0b',
-                            pointBorderWidth: 2,
-                            pointRadius: 5,
-                            pointHoverRadius: 7,
-                            fill: false,
-                            tension: 0.3,
-                            order: 1,
-                            yAxisID: 'y1'
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    interaction: {
-                        mode: 'index',
-                        intersect: false,
-                    },
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                            labels: {
-                                font: {
-                                    family: "'Noto Sans KR', sans-serif"
-                                },
-                                usePointStyle: true,
-                                padding: 20
-                            }
-                        },
-                        tooltip: {
-                            backgroundColor: 'rgba(15, 23, 42, 0.9)',
-                            titleFont: { family: "'Noto Sans KR', sans-serif", size: 14 },
-                            bodyFont: { family: "'Noto Sans KR', sans-serif", size: 13 },
-                            padding: 12,
-                            cornerRadius: 8,
-                        }
-                    },
-                    scales: {
-                        x: {
-                            grid: { display: false },
-                            ticks: { font: { family: "'Noto Sans KR', sans-serif", weight: 'bold' } }
-                        },
-                        y: {
-                            type: 'linear',
-                            display: true,
-                            position: 'left',
-                            title: {
-                                display: true,
-                                text: '매출액 (억원)',
-                                font: { family: "'Noto Sans KR', sans-serif", size: 12 }
-                            },
-                            grid: { borderDash: [4, 4], color: '#e2e8f0' }
-                        },
-                        y1: {
-                            type: 'linear',
-                            display: true,
-                            position: 'right',
-                            title: {
-                                display: true,
-                                text: '영업이익률 (%)',
-                                font: { family: "'Noto Sans KR', sans-serif", size: 12 }
-                            },
-                            min: 5,
-                            max: 20,
-                            grid: { display: false }
-                        }
-                    }
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
                 }
             });
+        }, observerOptions);
+
+        document.querySelectorAll('.slide-up').forEach((elem) => {
+            observer.observe(elem);
         });
-    </script>
+    });
+
+    const ctx = document.getElementById('financialChart').getContext('2d');
+    const financialChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['2023', '2024', '2025F', '2026F'],
+            datasets: [
+                {
+                    label: '매출액 (십억 원)',
+                    data: [65.0, 85.3, 95.5, 110.0],
+                    backgroundColor: '#cbd5e1', hoverBackgroundColor: '#94a3b8', borderRadius: 4, yAxisID: 'y', order: 2
+                },
+                {
+                    label: '영업이익률 (%)',
+                    data: [11.5, 16.2, 12.4, 15.0],
+                    type: 'line', borderColor: '#4f46e5', backgroundColor: '#4f46e5', borderWidth: 3,
+                    pointBackgroundColor: '#fff', pointBorderColor: '#4f46e5', pointBorderWidth: 2,
+                    pointRadius: 5, pointHoverRadius: 7, tension: 0.3, yAxisID: 'y1', order: 1
+                }
+            ]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+                legend: { position: 'bottom', labels: { font: { family: "'Noto Sans KR', sans-serif" }, color: '#334155' } },
+                tooltip: { titleFont: { family: "'Noto Sans KR', sans-serif" }, bodyFont: { family: "'Noto Sans KR', sans-serif" }, padding: 12, backgroundColor: 'rgba(15, 23, 42, 0.9)', cornerRadius: 8 }
+            },
+            scales: {
+                x: { grid: { display: false }, ticks: { font: { family: "'Noto Sans KR', sans-serif", weight: 'bold' }, color: '#475569' } },
+                y: {
+                    type: 'linear', display: true, position: 'left',
+                    title: { display: true, text: '매출액 (십억 원)', color: '#64748b', font: { family: "'Noto Sans KR', sans-serif", size: 12 } },
+                    grid: { borderDash: [4, 4], color: '#f1f5f9' }
+                },
+                y1: {
+                    type: 'linear', display: true, position: 'right',
+                    title: { display: true, text: '영업이익률 (%)', color: '#4f46e5', font: { family: "'Noto Sans KR', sans-serif", size: 12, weight: 'bold' } },
+                    grid: { drawOnChartArea: false }
+                }
+            }
+        }
+    });
+</script>
 </body>
 </html>
