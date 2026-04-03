@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>삼성전자 (005930 KOSPI) 심층 분석 보고서</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #0f172a; /* slate-900 */
+        }
+        
+        .slide-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .slide-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header backdrop blur */
+        .header-glass {
+            background-color: rgba(30, 58, 138, 0.95); /* indigo-900 */
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+
+    <header class="fixed top-0 w-full header-glass text-white z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="font-black text-2xl tracking-tighter text-indigo-100 hover:text-white transition">wal!street</a>
+            <a href="index.html" class="font-medium text-sm text-indigo-200 hover:text-white transition">← 메인으로</a>
+        </div>
+    </header>
+
+    <section class="slide-up min-h-screen bg-indigo-900 flex flex-col justify-center items-center text-center px-4 pt-20">
+        <div class="max-w-4xl mx-auto">
+            <span class="inline-block py-1 px-3 rounded-full bg-indigo-800 text-indigo-200 font-semibold text-sm mb-6 border border-indigo-700">005930 KOSPI</span>
+            <h1 class="text-5xl md:text-7xl font-black text-white mb-6 leading-tight tracking-tight">삼성전자</h1>
+            <p class="text-xl md:text-3xl font-light text-indigo-100 leading-relaxed break-keep">
+                AI 주도 슈퍼 사이클, 비즈니스 모델의 구조적 전환 및 <strong class="font-bold text-white">SOTP 밸류에이션</strong>
+            </p>
+        </div>
+    </section>
+
+    <section class="slide-up py-24 bg-slate-50 px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-12 border-b-4 border-indigo-600 inline-block pb-2">Executive Summary</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
+                
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-lg hover:border-indigo-300 transition duration-300 relative overflow-hidden group">
+                    <div class="absolute -right-6 -top-10 text-9xl font-black text-slate-50 group-hover:text-indigo-50 transition duration-300 z-0">1</div>
+                    <div class="relative z-10">
+                        <h3 class="text-xl font-bold text-indigo-900 mb-4">AI 턴키 공급의 독점적 해자</h3>
+                        <p class="text-slate-600 leading-relaxed text-sm">메모리(HBM), 초미세 로직 파운드리, 2.5D/3D 첨단 패키징을 모두 내재화하여 일괄 수주가 가능한 글로벌 유일의 종합 반도체 기업으로 진화.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-lg hover:border-indigo-300 transition duration-300 relative overflow-hidden group">
+                    <div class="absolute -right-6 -top-10 text-9xl font-black text-slate-50 group-hover:text-indigo-50 transition duration-300 z-0">2</div>
+                    <div class="relative z-10">
+                        <h3 class="text-xl font-bold text-indigo-900 mb-4">구독 기반(ARR) BM 전환</h3>
+                        <p class="text-slate-600 leading-relaxed text-sm">극단적 PxQ 제조업에서 벗어나, 갤럭시 생태계 3억 명 유효 타겟 대상 'Agentic AI' 프리미엄 구독 도입. 소프트웨어 멀티플 리레이팅 기대.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-lg hover:border-indigo-300 transition duration-300 relative overflow-hidden group">
+                    <div class="absolute -right-6 -top-10 text-9xl font-black text-slate-50 group-hover:text-indigo-50 transition duration-300 z-0">3</div>
+                    <div class="relative z-10">
+                        <h3 class="text-xl font-bold text-indigo-900 mb-4">경이적인 영업 레버리지</h3>
+                        <p class="text-slate-600 leading-relaxed text-sm">HBM의 캐파 블랙홀 현상으로 범용 DRAM 판가 +145% 폭등 전망. 고정비 평탄화 돌파로 2026년 전사 영업이익 최대 242조 원 전망.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-lg hover:border-indigo-300 transition duration-300 relative overflow-hidden group">
+                    <div class="absolute -right-6 -top-10 text-9xl font-black text-slate-50 group-hover:text-indigo-50 transition duration-300 z-0">4</div>
+                    <div class="relative z-10">
+                        <h3 class="text-xl font-bold text-indigo-900 mb-4">지배구조 리스크 영구 소멸</h3>
+                        <p class="text-slate-600 leading-relaxed text-sm">2026년 4월 12조 원 규모 대주주 상속세 최종 납부 완료. 오버행 소멸과 함께 FCF 기반 압도적 특별 배당 및 자사주 소각 임박.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="slide-up py-24 bg-slate-100 px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4 border-b-4 border-indigo-600 inline-block pb-2">AI Infrastructure Value Chain</h2>
+            <p class="text-slate-600 mb-12 font-medium">단순 부품 공급을 넘어선 글로벌 유일의 수직 계열화 턴키(Turn-key) 에코시스템</p>
+            
+            <div class="flex flex-col lg:flex-row items-center justify-between space-y-6 lg:space-y-0 lg:space-x-4">
+                
+                <div class="bg-white border-t-4 border-indigo-600 shadow-md rounded-xl p-6 w-full lg:w-1/4 text-center z-10">
+                    <div class="w-16 h-16 mx-auto bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                    </div>
+                    <h4 class="font-bold text-slate-800 mb-2">Memory</h4>
+                    <p class="text-xs text-slate-500">HBM4 초격차 확보<br>초고용량 eSSD 독점 공급</p>
+                </div>
+
+                <div class="hidden lg:block text-indigo-300">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </div>
+                <div class="block lg:hidden text-indigo-300 transform rotate-90">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </div>
+
+                <div class="bg-white border-t-4 border-indigo-600 shadow-md rounded-xl p-6 w-full lg:w-1/4 text-center z-10">
+                    <div class="w-16 h-16 mx-auto bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
+                    </div>
+                    <h4 class="font-bold text-slate-800 mb-2">Logic Foundry</h4>
+                    <p class="text-xs text-slate-500">2나노 공정 수율 60% 돌파<br>테일러 팹 온쇼어링 독점 수혜</p>
+                </div>
+
+                <div class="hidden lg:block text-indigo-300">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </div>
+                <div class="block lg:hidden text-indigo-300 transform rotate-90">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </div>
+
+                <div class="bg-white border-t-4 border-indigo-600 shadow-md rounded-xl p-6 w-full lg:w-1/4 text-center z-10">
+                    <div class="w-16 h-16 mx-auto bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                    </div>
+                    <h4 class="font-bold text-slate-800 mb-2">Advanced Packaging</h4>
+                    <p class="text-xs text-slate-500">2.5D/3D 이종 집적<br>로직 베이스 다이 HCB 결합</p>
+                </div>
+
+                <div class="hidden lg:block text-indigo-300">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </div>
+                <div class="block lg:hidden text-indigo-300 transform rotate-90">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </div>
+
+                <div class="bg-indigo-900 border-t-4 border-indigo-400 shadow-lg rounded-xl p-6 w-full lg:w-1/4 text-center z-10 text-white transform scale-105">
+                    <div class="w-16 h-16 mx-auto bg-indigo-800 text-indigo-200 rounded-full flex items-center justify-center mb-4 border border-indigo-600">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+                    </div>
+                    <h4 class="font-bold mb-2">Hyperscalers</h4>
+                    <p class="text-xs text-indigo-200">단일 파트너 통한<br>공급망 리스크 제로화 달성</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section class="slide-up py-24 bg-slate-50 px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-8 border-b-4 border-indigo-600 inline-block pb-2">메모리 반도체(DS) 매출 추정 매트릭스</h2>
+            <div class="overflow-x-auto bg-white rounded-xl shadow-sm border border-slate-200">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-indigo-900 text-white text-sm uppercase tracking-wider">
+                            <th class="p-4 font-semibold border-b border-indigo-800">부문 (Segment)</th>
+                            <th class="p-4 font-semibold border-b border-indigo-800">추정 출하량 (Q)</th>
+                            <th class="p-4 font-semibold border-b border-indigo-800">전년 대비 (Q Growth)</th>
+                            <th class="p-4 font-semibold border-b border-indigo-800">추정 판가 (P)</th>
+                            <th class="p-4 font-semibold border-b border-indigo-800">전년 대비 (P Growth)</th>
+                            <th class="p-4 font-semibold border-b border-indigo-800">보수적 예상 매출</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-slate-700 text-sm">
+                        <tr class="bg-indigo-50 border-b border-slate-200 hover:bg-indigo-100 transition">
+                            <td class="p-4 font-bold text-indigo-900">DRAM</td>
+                            <td class="p-4">1,368.2억 개 <span class="text-xs text-slate-500">(1Gb Eq)</span></td>
+                            <td class="p-4 text-emerald-600 font-bold">+ 21.0%</td>
+                            <td class="p-4">$1.10 / 1Gb</td>
+                            <td class="p-4 text-emerald-600 font-bold">+ 136.0%</td>
+                            <td class="p-4 font-bold text-slate-900">49.6조 ~ 86.4조 원</td>
+                        </tr>
+                        <tr class="border-b border-slate-200 hover:bg-slate-50 transition">
+                            <td class="p-4 font-bold">NAND (eSSD)</td>
+                            <td class="p-4">3,733.0억 개 <span class="text-xs text-slate-400">(1GB Eq)</span></td>
+                            <td class="p-4 text-emerald-600 font-medium">+ 19.0%</td>
+                            <td class="p-4">$0.20 / 1GB</td>
+                            <td class="p-4 text-emerald-600 font-medium">+ 135.0%</td>
+                            <td class="p-4 font-medium">-</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition bg-slate-100">
+                            <td class="p-4 font-bold text-indigo-800">HBM4 (Premium)</td>
+                            <td class="p-4 text-slate-500 text-xs">기존 DRAM 물량 일부 대체</td>
+                            <td class="p-4 text-slate-500 text-xs">제한적 공급</td>
+                            <td class="p-4 text-slate-500 text-xs">HBM3E 대비 +20%</td>
+                            <td class="p-4 text-slate-800 text-xs font-semibold">블렌디드 판가 상승 견인</td>
+                            <td class="p-4 font-bold text-indigo-700">이익률 극대화 기여</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-xs text-slate-400 mt-3 text-right">* 중소 고객사 물량 배제, 북미 하이퍼스케일러 확정 물량 기반 보수적 추정</p>
+        </div>
+    </section>
+
+    <section class="slide-up py-24 bg-slate-100 px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-12 border-b-4 border-indigo-600 inline-block pb-2">가치 창출 및 주주환원 타임라인</h2>
+            
+            <div class="relative border-l-4 border-indigo-200 ml-3 md:ml-6 space-y-12">
+                
+                <div class="relative pl-8 md:pl-12">
+                    <div class="absolute w-6 h-6 bg-indigo-600 rounded-full -left-[15px] border-4 border-white shadow"></div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                        <span class="text-indigo-600 font-bold text-sm">2025</span>
+                        <h4 class="text-xl font-bold text-slate-900 mt-1 mb-2">공격적 CapEx 및 무료 생태계 확보</h4>
+                        <p class="text-slate-600 text-sm">역대 최대 R&D 37.7조 집행, 텍사스 테일러 파운드리 170억 달러 투자 본격화. 갤럭시 AI 무료 제공을 통한 3억 명 유효 사용자(SAM) Data 확보 완료.</p>
+                    </div>
+                </div>
+
+                <div class="relative pl-8 md:pl-12">
+                    <div class="absolute w-6 h-6 bg-indigo-600 rounded-full -left-[15px] border-4 border-white shadow"></div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                        <span class="text-indigo-600 font-bold text-sm">2026. 03</span>
+                        <h4 class="text-xl font-bold text-slate-900 mt-1 mb-2">NVIDIA GTC 2026 & HBM4 양산</h4>
+                        <p class="text-slate-600 text-sm">HBM4 실물 양산 돌입. 차세대 AI 가속기 'Vera Rubin' 플랫폼의 핵심 메모리 파트너로 확고히 진입하며 기술 지배력 탈환.</p>
+                    </div>
+                </div>
+
+                <div class="relative pl-8 md:pl-12">
+                    <div class="absolute w-8 h-8 bg-indigo-900 rounded-full -left-[19px] border-4 border-white shadow flex items-center justify-center">
+                        <div class="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                    <div class="bg-indigo-50 p-6 rounded-xl shadow-md border border-indigo-200">
+                        <span class="text-indigo-800 font-black text-sm">2026. 04</span>
+                        <h4 class="text-xl font-bold text-indigo-900 mt-1 mb-2">지배구조 리스크 영구 소멸</h4>
+                        <p class="text-slate-700 text-sm font-medium">12조 원 규모 오너 일가 상속세 최종 납부 완료. 대주주 자금 조달 리스크 소멸 및 컨트롤타워 재건에 따른 밸류에이션 디스카운트 해소.</p>
+                    </div>
+                </div>
+
+                <div class="relative pl-8 md:pl-12">
+                    <div class="absolute w-6 h-6 bg-indigo-600 rounded-full -left-[15px] border-4 border-white shadow"></div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                        <span class="text-indigo-600 font-bold text-sm">2026 하반기</span>
+                        <h4 class="text-xl font-bold text-slate-900 mt-1 mb-2">구독 경제 도입 및 초과 주주환원</h4>
+                        <p class="text-slate-600 text-sm">갤럭시 프리미엄 모델 유료 구독(ARR) 전환 개시. FCF 50% 환원 정책 만료에 따른 92조 원 재원 기반 특별배당(주당 8,000원) 및 대규모 자사주 소각.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="slide-up py-24 bg-slate-50 px-6 mb-12">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4 border-b-4 border-indigo-600 inline-block pb-2">Financials & SOTP Valuation</h2>
+            <p class="text-slate-600 mb-12 font-medium">영업 레버리지 발현에 따른 이익 폭증 및 3가지 주가 시나리오</p>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-center">
+                    <h3 class="text-lg font-bold text-slate-800 mb-4 text-center">전사 영업이익 및 DRAM 판가 추이</h3>
+                    <div class="relative w-full h-[300px]">
+                        <canvas id="financialChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col justify-center space-y-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-slate-400">
+                        <h4 class="font-bold text-slate-800 mb-1">메모리 (DS)</h4>
+                        <p class="text-sm text-slate-600">Target P/B 3.0x ~ 3.2x 적용. HBM4 양산 초격차 및 역사적 ASP 상승에 따른 슈퍼 사이클 평탄화 반영.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-slate-500">
+                        <h4 class="font-bold text-slate-800 mb-1">파운드리 & LSI</h4>
+                        <p class="text-sm text-slate-600">Target EV/EBITDA 11.5x ~ 12.0x 적용. 2나노 수율 60% 돌파 및 막대한 감가상각비를 고려한 현금 창출력 중점 평가.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-indigo-600">
+                        <h4 class="font-bold text-slate-800 mb-1">모바일 (MX) & 네트웍스</h4>
+                        <p class="text-sm text-slate-600">Target PER 10.0x ~ 12.0x 적용. 하드웨어 제조사를 넘어 'Agentic AI' 구독 경제(ARR) 창출에 따른 플랫폼 기업 멀티플 점진적 반영.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <div class="bg-white border border-slate-200 rounded-2xl p-8 flex flex-col items-center text-center shadow-sm">
+                    <span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-full mb-4">Bear Case</span>
+                    <h3 class="text-3xl font-black text-slate-800 mb-2">150,000<span class="text-lg font-medium text-slate-500"> 원</span></h3>
+                    <div class="w-full h-px bg-slate-200 my-4"></div>
+                    <p class="text-sm text-slate-600 leading-relaxed text-left w-full">AI CapEx 조기 둔화 및 메모리 판가 랠리 종료 시. 단, 215조 원의 막대한 현금성 자산과 연말 5.3% 수준의 특별배당이 <strong>강력한 하방 안전마진</strong> 제공.</p>
+                </div>
+
+                <div class="bg-indigo-700 border border-indigo-800 rounded-2xl p-8 flex flex-col items-center text-center shadow-2xl transform md:-translate-y-4 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-yellow-400 text-yellow-900 text-[10px] font-black px-3 py-1 tracking-widest rounded-bl-lg">TARGET</div>
+                    <span class="px-3 py-1 bg-indigo-800 text-indigo-100 text-xs font-bold rounded-full mb-4">Base Case</span>
+                    <h3 class="text-4xl font-black text-white mb-2">260,000<span class="text-xl font-medium text-indigo-200"> ~ 275,000 원</span></h3>
+                    <div class="w-full h-px bg-indigo-600 my-4"></div>
+                    <p class="text-sm text-indigo-100 leading-relaxed text-left w-full">HBM4 차질 없는 양산, 범용 DRAM 판가 수성. 파운드리 안정화 및 상속세 오버행 완벽 해소에 따른 SOTP 본질 가치 정당화 구간.</p>
+                </div>
+
+                <div class="bg-white border border-slate-200 rounded-2xl p-8 flex flex-col items-center text-center shadow-sm">
+                    <span class="px-3 py-1 bg-emerald-50 text-emerald-600 border border-emerald-200 text-xs font-bold rounded-full mb-4">Bull Case</span>
+                    <h3 class="text-3xl font-black text-slate-800 mb-2">330,000<span class="text-lg font-medium text-slate-500"> 원</span></h3>
+                    <div class="w-full h-px bg-slate-200 my-4"></div>
+                    <p class="text-sm text-slate-600 leading-relaxed text-left w-full">HBM4 지배력 탈환으로 영업이익 242조 원 돌파. 3천만 AI 유료 구독자 달성 시 플랫폼 밸류에이션 부여로 <strong>시장 평가 기준의 근본적 리레이팅</strong>.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Intersection Observer for Slide-up animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.slide-up').forEach((elem) => {
+                observer.observe(elem);
+            });
+
+            // Chart.js Configuration
+            const ctx = document.getElementById('financialChart').getContext('2d');
+            const financialChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['2024(A)', '2025(E)', '2026(F)'],
+                    datasets: [
+                        {
+                            type: 'bar',
+                            label: '영업이익 (조 원)',
+                            data: [15, 43.6, 200], // Extracted from text context
+                            backgroundColor: 'rgba(67, 56, 202, 0.9)', // indigo-700
+                            borderRadius: 6,
+                            yAxisID: 'y',
+                            order: 2
+                        },
+                        {
+                            type: 'line',
+                            label: 'DRAM 단가 상승률 (%)',
+                            data: [5, 15, 145], // Representational logic based on text
+                            borderColor: '#0f172a', // slate-900
+                            backgroundColor: '#0f172a',
+                            borderWidth: 3,
+                            pointRadius: 5,
+                            pointBackgroundColor: '#ffffff',
+                            tension: 0.4,
+                            yAxisID: 'y1',
+                            order: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: { family: "'Noto Sans KR', sans-serif", size: 12 }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            title: {
+                                display: true,
+                                text: '영업이익 (조 원)',
+                                font: { family: "'Noto Sans KR', sans-serif" }
+                            },
+                            grid: { color: '#f1f5f9' } // slate-100
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            title: {
+                                display: true,
+                                text: '상승률 (%)',
+                                font: { family: "'Noto Sans KR', sans-serif" }
+                            },
+                            grid: { drawOnChartArea: false }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
