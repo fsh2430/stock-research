@@ -1,38 +1,37 @@
-\<\!DOCTYPE html\>
+<!DOCTYPE html>
 
-\<html lang="ko"\>
-\<head\>
-\<meta charset="UTF-8"\>
-\<meta name="viewport" content="width=device-width, initial-scale=1.0"\>
-\<title\>한화생명 심층 리서치 프레젠테이션\</title\>
-\<link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)"\>
-\<link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin\>
-\<link href="[https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900\&display=swap](https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap)" rel="stylesheet"\>
-\<script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"\>\</script\>
-\<script\>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>한화생명 심층 리서치 프레젠테이션</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
 tailwind.config = {
 theme: {
 extend: {
 fontFamily: { sans: ['"Noto Sans KR"', 'sans-serif'] },
 colors: {
-slate: { 50: '\#f8fafc', 100: '\#f1f5f9', 800: '\#1e293b', 900: '\#0f172a' },
-indigo: { 50: '\#eef2ff', 100: '\#e0e7ff', 600: '\#4f46e5', 700: '\#4338ca', 800: '\#3730a3', 900: '\#312e81' }
+slate: { 50: '#f8fafc', 100: '#f1f5f9', 800: '#1e293b', 900: '#0f172a' },
+indigo: { 50: '#eef2ff', 100: '#e0e7ff', 600: '#4f46e5', 700: '#4338ca', 800: '#3730a3', 900: '#312e81' }
 }
 }
 }
 }
-\</script\>
-\<script src="[https://cdn.jsdelivr.net/npm/chart.js](https://cdn.jsdelivr.net/npm/chart.js)"\>\</script\>
-\<style\>
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
 .slide-up { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
 .slide-up.visible { opacity: 1; transform: translateY(0); }
 html { scroll-behavior: smooth; }
-.highlight-col { background-color: \#eef2ff; font-weight: 700; color: \#312e81; }
-\</style\>
-\</head\>
-\<body class="bg-slate-50 text-slate-800 font-sans antialiased overflow-x-hidden selection:bg-indigo-200"\>
+.highlight-col { background-color: #eef2ff; font-weight: 700; color: #312e81; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased overflow-x-hidden selection:bg-indigo-200">
 
-```
 <header class="fixed top-0 left-0 w-full z-50 bg-slate-50/90 backdrop-blur-md border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href="index.html" class="text-indigo-900 font-black text-xl tracking-tighter">wal!street</a>
@@ -341,7 +340,5 @@ html { scroll-behavior: smooth; }
         }
     });
 </script>
-```
-
-\</body\>
-\</html\>
+</body>
+</html>
