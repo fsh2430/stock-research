@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>테슬라(TSLA) 심층 리서치 프레젠테이션</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+fontFamily: { sans: ['"Noto Sans KR"', 'sans-serif'] },
+colors: {
+slate: { 50: '#f8fafc', 100: '#f1f5f9', 800: '#1e293b', 900: '#0f172a' },
+indigo: { 50: '#eef2ff', 100: '#e0e7ff', 600: '#4f46e5', 700: '#4338ca', 800: '#3730a3', 900: '#312e81' }
+}
+}
+}
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+.slide-up { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+.slide-up.visible { opacity: 1; transform: translateY(0); }
+html { scroll-behavior: smooth; }
+.highlight-col { background-color: #eef2ff; font-weight: 700; color: #312e81; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased overflow-x-hidden selection:bg-indigo-200">
+
+<header class="fixed top-0 left-0 w-full z-50 bg-slate-50/90 backdrop-blur-md border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="index.html" class="text-indigo-900 font-black text-xl tracking-tighter">wal!street</a>
+        <a href="index.html" class="text-slate-800 hover:text-indigo-600 font-medium text-sm transition-colors">← 메인으로</a>
+    </div>
+</header>
+
+<section class="min-h-screen flex items-center justify-center bg-indigo-900 text-slate-50 pt-16 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-indigo-500 via-indigo-900 to-transparent"></div>
+    <div class="max-w-5xl mx-auto px-6 z-10 text-center slide-up">
+        <span class="inline-block py-1 px-3 rounded-full bg-indigo-800 text-indigo-100 text-sm font-bold tracking-widest mb-6 border border-indigo-700">TSLA (NASDAQ)</span>
+        <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight tracking-tight">테슬라(Tesla, Inc.)<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-200 to-indigo-400">Deep-Dive Analysis</span></h1>
+        <p class="text-xl md:text-2xl text-indigo-100 font-light max-w-3xl mx-auto leading-relaxed">
+            물리적 AI 및 유틸리티 인프라 독점 기업으로의 구조적 전환.<br>단순한 EV 제조사를 넘어 글로벌 전력망과 육체노동 시장을 장악하는 진정한 딥테크 플랫폼 기업.
+        </p>
+    </div>
+</section>
+
+<section class="py-24 max-w-7xl mx-auto px-6">
+    <div class="mb-16 text-center slide-up">
+        <h2 class="text-3xl font-black text-slate-900 mb-4">Executive Summary</h2>
+        <div class="w-16 h-1 bg-indigo-600 mx-auto"></div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-indigo-600 relative overflow-hidden slide-up delay-100 hover:-translate-y-1 transition-transform duration-300">
+            <span class="absolute -top-4 -right-2 text-9xl font-black text-slate-50 opacity-80 select-none">1</span>
+            <div class="relative z-10">
+                <h3 class="text-xl font-bold text-indigo-900 mb-3">EV 과점에서 AI 인프라 플랫폼으로 도약</h3>
+                <p class="text-slate-600 leading-relaxed">하드웨어 단일 판매 중심에서 벗어나, 메가팩(ESS)을 통한 유틸리티 인프라 구축과 FSD 소프트웨어 중심의 범용 AI 생태계를 장악하는 플랫폼 기업으로 패러다임을 전환하고 있습니다.</p>
+            </div>
+        </div>
+        <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-indigo-600 relative overflow-hidden slide-up delay-200 hover:-translate-y-1 transition-transform duration-300">
+            <span class="absolute -top-4 -right-2 text-9xl font-black text-slate-50 opacity-80 select-none">2</span>
+            <div class="relative z-10">
+                <h3 class="text-xl font-bold text-indigo-900 mb-3">구독 경제(SaaS) 기반 극단적 이익률 개선</h3>
+                <p class="text-slate-600 leading-relaxed">FSD 월 99달러 전면 구독제 도입으로 단기 변동성을 극복했습니다. 110만 명 이상의 구독자 기반은 한계비용 0에 가까운 90% 마진의 안정적인 연간반복매출(ARR)을 창출합니다.</p>
+            </div>
+        </div>
+        <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-indigo-600 relative overflow-hidden slide-up delay-300 hover:-translate-y-1 transition-transform duration-300">
+            <span class="absolute -top-4 -right-2 text-9xl font-black text-slate-50 opacity-80 select-none">3</span>
+            <div class="relative z-10">
+                <h3 class="text-xl font-bold text-indigo-900 mb-3">에너지 및 육체노동 밸류체인으로 TAM 무한 확장</h3>
+                <p class="text-slate-600 leading-relaxed">전통 자동차 시장의 한계를 탈피하여 오토비더(Autobidder) 기반의 AI 전력망 시장과 휴머노이드 로봇 옵티머스를 통한 수십조 달러 규모의 글로벌 육체노동 인력 대체 시장으로 진입합니다.</p>
+            </div>
+        </div>
+        <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-indigo-600 relative overflow-hidden slide-up delay-400 hover:-translate-y-1 transition-transform duration-300">
+            <span class="absolute -top-4 -right-2 text-9xl font-black text-slate-50 opacity-80 select-none">4</span>
+            <div class="relative z-10">
+                <h3 class="text-xl font-bold text-indigo-900 mb-3">J커브(J-Curve) 진입 직전의 거대한 압축기</h3>
+                <p class="text-slate-600 leading-relaxed">2026년 집중 집행되는 200억 달러 CapEx가 단기 이익을 압박하나, 언박스드 프로세스와 소프트웨어 크로스셀링을 통한 영업 레버리지가 폭발하며 구조적 마진 급등기를 맞이할 것입니다.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-24 bg-slate-100 border-y border-slate-200">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="mb-16 text-center slide-up">
+            <h2 class="text-3xl font-black text-slate-900 mb-4">Business Model Evolution</h2>
+            <div class="w-16 h-1 bg-indigo-600 mx-auto mb-6"></div>
+            <p class="text-slate-600 max-w-2xl mx-auto">전기차 하드웨어 제조의 수익성 한계를 돌파하고, 방대한 데이터 댐을 거쳐 궁극적인 한계 비용 제로의 글로벌 인프라 독점 플랫폼으로 진화하는 3단계 마스터플랜입니다.</p>
+        </div>
+
+        <div class="flex flex-col md:flex-row items-center justify-between relative slide-up delay-200 max-w-5xl mx-auto">
+            <div class="w-full md:w-1/3 flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-sm border border-slate-200 z-10 relative">
+                <div class="w-16 h-16 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center font-bold text-xl mb-4 shadow-inner">EV</div>
+                <h4 class="font-bold text-slate-800 mb-2">하드웨어 개척기 (Past)</h4>
+                <p class="text-sm text-slate-500">블루오션이었던 전기차 시장을 개척하며 고마진을 구가했으나, 경쟁사들의 진입 및 글로벌 과점화로 차량 마진율이 17%대로 하향 안정화되는 구조적 성숙기에 직면했습니다.</p>
+            </div>
+
+            <div class="hidden md:flex flex-1 items-center justify-center z-0 -mx-4">
+                <div class="h-1 w-full bg-gradient-to-r from-slate-300 to-indigo-300 relative">
+                    <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-3 h-3 border-t-2 border-r-2 border-indigo-400 transform rotate-45"></div>
+                </div>
+            </div>
+            <div class="md:hidden h-12 w-1 bg-gradient-to-b from-slate-300 to-indigo-300 relative my-2"></div>
+
+            <div class="w-full md:w-1/3 flex flex-col items-center text-center p-6 bg-indigo-50 rounded-xl shadow-md border border-indigo-200 z-10 relative transform md:-translate-y-4">
+                <div class="w-16 h-16 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-xl mb-4 shadow-lg">SaaS</div>
+                <h4 class="font-bold text-indigo-900 mb-2">데이터 독점 및 플랫폼화 (Present)</h4>
+                <p class="text-sm text-indigo-700">전 세계 600만 대 Fleet이 수집한 80억 마일 주행 데이터 기반으로 FSD 구독 경제를 확립, 고마진 연간반복매출(ARR)을 창출하며 하드웨어를 '배포 채널'로 재정의했습니다.</p>
+            </div>
+
+            <div class="hidden md:flex flex-1 items-center justify-center z-0 -mx-4">
+                <div class="h-1 w-full bg-gradient-to-r from-indigo-300 to-indigo-600 relative">
+                    <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-3 h-3 border-t-2 border-r-2 border-indigo-600 transform rotate-45"></div>
+                </div>
+            </div>
+            <div class="md:hidden h-12 w-1 bg-gradient-to-b from-indigo-300 to-indigo-600 relative my-2"></div>
+
+            <div class="w-full md:w-1/3 flex flex-col items-center text-center p-6 bg-indigo-900 rounded-xl shadow-xl border border-indigo-800 z-10 relative">
+                <div class="w-16 h-16 rounded-full bg-indigo-100 text-indigo-900 flex items-center justify-center font-bold text-xl mb-4 shadow-inner">AI</div>
+                <h4 class="font-bold text-white mb-2">물리적 AI / 인프라 독점 (Future)</h4>
+                <p class="text-sm text-indigo-200">휴머노이드 로봇(Optimus), 무인 로보택시(Cybercab), AI 반도체 내재화(Terafab) 및 유틸리티 전력망(Megapack)을 결합하여 현실 세계의 물리적 법칙을 자동화하는 생태계입니다.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-24 max-w-5xl mx-auto px-6">
+    <div class="mb-12 slide-up">
+        <h2 class="text-3xl font-black text-slate-900 mb-4">Paradigm Shift: 레거시 OEM vs AI 인프라</h2>
+        <p class="text-slate-600">단순 제조업 관점이 아닌, 극단적인 영업 레버리지와 확장성을 지닌 딥테크 기업으로서 테슬라의 가치 평가 모델을 전환해야 하는 4가지 핵심 기준입니다.</p>
+    </div>
+    
+    <div class="overflow-x-auto rounded-xl shadow-lg border border-slate-200 slide-up delay-200">
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr class="bg-slate-800 text-slate-50 text-sm uppercase tracking-wide">
+                    <th class="p-5 border-b border-slate-700 w-1/4">비교 항목</th>
+                    <th class="p-5 border-b border-slate-700 w-3/8 bg-slate-700">레거시 제조업 모델 (과거)</th>
+                    <th class="p-5 border-b border-slate-700 w-3/8 bg-indigo-700 text-indigo-50">인프라/플랫폼 모델 (현재 및 미래)</th>
+                </tr>
+            </thead>
+            <tbody class="text-slate-700">
+                <tr class="border-b border-slate-200 hover:bg-slate-50 transition-colors">
+                    <td class="p-5 font-bold text-slate-900 bg-slate-100">주력 비즈니스 매출 구조</td>
+                    <td class="p-5">일회성 신차 판매 및 교체 주기 의존 (변동성 극심, 지속 하락하는 마진)</td>
+                    <td class="p-5 highlight-col">FSD SaaS, 로보택시 운임, 전력 밸런싱(Autobidder)을 통한 고마진 반복 매출(ARR)</td>
+                </tr>
+                <tr class="border-b border-slate-200 hover:bg-slate-50 transition-colors">
+                    <td class="p-5 font-bold text-slate-900 bg-slate-100">잠재 시장(TAM)의 한계</td>
+                    <td class="p-5">전 세계 연간 8,000만~9,000만 대 수준의 물리적 자동차 교체 시장</td>
+                    <td class="p-5 highlight-col">수조 달러 규모의 전력 에너지 인프라 및 전 세계 육체노동 GDP 대체 시장</td>
+                </tr>
+                <tr class="border-b border-slate-200 hover:bg-slate-50 transition-colors">
+                    <td class="p-5 font-bold text-slate-900 bg-slate-100">핵심 원가 및 이익 구조</td>
+                    <td class="p-5">높은 변동비 비중, 원자재 인플레이션(배터리 광물)에 극도로 취약한 선형적 이익 구조</td>
+                    <td class="p-5 highlight-col">초기 막대한 고정비(CapEx) 투자 후, 한계 비용 제로에 수렴하는 J커브 비선형 수익 모델</td>
+                </tr>
+                <tr class="hover:bg-slate-50 transition-colors">
+                    <td class="p-5 font-bold text-slate-900 bg-slate-100">AI 및 공급망 수직계열화</td>
+                    <td class="p-5">엔비디아 등 외부 벤더에 AI 인프라 의존 (높은 마진 스태킹 발생)</td>
+                    <td class="p-5 highlight-col">자체 테라팹(Terafab) 및 NPU 설계, 배터리 내재화로 밸류체인 독점 통제 완비</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="py-24 bg-slate-900 text-slate-50">
+    <div class="max-w-5xl mx-auto px-6">
+        <div class="mb-16 text-center slide-up">
+            <h2 class="text-3xl font-black text-white mb-4">Growth Timeline</h2>
+            <div class="w-16 h-1 bg-indigo-500 mx-auto"></div>
+        </div>
+
+        <div class="relative border-l-2 border-indigo-700 ml-4 md:ml-1/2 space-y-12 slide-up delay-200">
+            <div class="relative pl-8 md:pl-0">
+                <div class="absolute w-4 h-4 bg-indigo-500 rounded-full -left-[9px] md:left-1/2 md:-ml-[9px] top-1 ring-4 ring-slate-900"></div>
+                <div class="md:w-1/2 md:pr-12 md:text-right">
+                    <span class="text-indigo-400 font-black text-xl tracking-wider block mb-2">2024 ~ 2025</span>
+                    <h4 class="text-lg font-bold text-white mb-2">구독 모델 전환 및 에너지 팩토리 도약</h4>
+                    <p class="text-slate-400 text-sm">FSD 일시불 모델을 폐기하고 월 99달러 구독제로 전면 전환하여 SaaS 기업의 기틀 마련. 상하이/라스롭 공장 가동으로 연간 46.7 GWh의 에너지 사업부 폭발적 궤도 진입.</p>
+                </div>
+            </div>
+            
+            <div class="relative pl-8 md:pl-0">
+                <div class="absolute w-4 h-4 bg-red-500 rounded-full -left-[9px] md:left-1/2 md:-ml-[9px] top-1 ring-4 ring-slate-900"></div>
+                <div class="md:w-1/2 md:ml-auto md:pl-12">
+                    <span class="text-red-400 font-black text-xl tracking-wider block mb-2">2026 1H</span>
+                    <h4 class="text-lg font-bold text-white mb-2">사이버캡 양산 및 AI 인프라 자립화</h4>
+                    <p class="text-slate-400 text-sm">텍사스에서 페달과 스티어링 휠이 없는 완전 자율주행 특화 차량 '사이버캡(Cybercab)' 대량 양산 개시. SpaceX 연합 기반 독자 반도체 생산 기지 '테라팹' 가동 본격화.</p>
+                </div>
+            </div>
+
+            <div class="relative pl-8 md:pl-0">
+                <div class="absolute w-5 h-5 bg-indigo-400 rounded-full -left-[10px] md:left-1/2 md:-ml-[10px] top-1 ring-4 ring-slate-900 shadow-[0_0_15px_rgba(129,140,248,0.6)]"></div>
+                <div class="md:w-1/2 md:pr-12 md:text-right">
+                    <span class="text-indigo-300 font-black text-2xl tracking-wider block mb-2">2026 2H (현재 핵심 변곡점)</span>
+                    <h4 class="text-xl font-bold text-white mb-2">휴머노이드 상용화 및 B2B 인프라 독식</h4>
+                    <p class="text-slate-300 text-sm">옵티머스 Gen 3 대량 양산을 통한 글로벌 육체노동 TAM 진출. 휴스턴 메가팩토리(50GWh) 라인 가동 개시로 전 세계 AI 데이터센터의 전력 수요 부족 현상을 전면 흡수.</p>
+                </div>
+            </div>
+
+            <div class="relative pl-8 md:pl-0">
+                <div class="absolute w-4 h-4 border-2 border-indigo-500 bg-slate-900 rounded-full -left-[9px] md:left-1/2 md:-ml-[9px] top-1 ring-4 ring-slate-900"></div>
+                <div class="md:w-1/2 md:ml-auto md:pl-12">
+                    <span class="text-slate-400 font-black text-xl tracking-wider block mb-2">2027 ~ Future</span>
+                    <h4 class="text-lg font-bold text-white mb-2">영업 레버리지 J커브 완성과 마진 급등</h4>
+                    <p class="text-slate-400 text-sm">기반 투자가 종료되며 감가상각비 부담이 축소되는 구간 진입. 추가 투입 자본 없는(한계비용 제로) SaaS형 반복 매출이 이익 단으로 고스란히 반영되며 극단적 수익성 실현.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-24 bg-slate-50">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="mb-16 text-center slide-up">
+            <h2 class="text-3xl font-black text-slate-900 mb-4">Financial Projection & Valuation</h2>
+            <div class="w-16 h-1 bg-indigo-600 mx-auto"></div>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-lg border border-slate-200 mb-16 slide-up delay-200">
+            <div class="mb-6 text-center">
+                <h3 class="text-lg font-bold text-slate-800">단기 CapEx 압박을 상쇄하는 매출 추이 (보수적 모델)</h3>
+                <p class="text-xs text-slate-500">단위: Billion USD (막대), % (선)</p>
+            </div>
+            <div class="relative h-80 w-full">
+                <canvas id="financialChart"></canvas>
+            </div>
+        </div>
+
+        <div class="mb-8 text-center slide-up delay-300">
+            <h3 class="text-2xl font-bold text-slate-900 mb-2">Valuation Scenarios</h3>
+            <p class="text-slate-600 text-sm">SOTP (Sum-of-the-Parts) 밸류에이션 모델 기반, 2026 완전 희석 주식수(39.5억 주) 적용</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end slide-up delay-400">
+            <div class="bg-white rounded-xl shadow border border-slate-200 p-6 flex flex-col items-center text-center opacity-90 h-full justify-between">
+                <div>
+                    <span class="text-slate-500 font-bold uppercase text-xs tracking-widest mb-1 block">Bear Case</span>
+                    <h4 class="text-slate-800 font-black text-2xl mb-4">$130 - $280</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">경기 침체로 EV 인도량 160만 대 하회, 자율주행 승인 무기한 지연. LFP 공급 과잉 여파. 대주주 거버넌스 리스크(SBC 희석) 가중 시, 단순 '레거시 제조업체' 멀티플(10~15x)로 회귀.</p>
+                </div>
+                <div class="w-full bg-slate-100 text-slate-500 text-xs py-2 rounded font-medium">전통 자동차 산업의 성장 한계 회귀</div>
+            </div>
+
+            <div class="bg-indigo-50 rounded-xl shadow-2xl border-2 border-indigo-600 p-8 flex flex-col items-center text-center transform md:scale-105 z-10 h-full justify-between relative overflow-hidden">
+                <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-indigo-400 to-indigo-700"></div>
+                <div>
+                    <span class="text-indigo-600 font-black uppercase text-sm tracking-widest mb-1 block">Base Case</span>
+                    <h4 class="text-indigo-900 font-black text-3xl mb-4">$350 - $450</h4>
+                    <p class="text-indigo-800 text-sm leading-relaxed mb-6 font-medium">EV 170만 대 방어, B2B 에너지 사업 매출 $24B 안착. 사이버캡 및 FSD 150만 명 성장. 지배구조 할인 10%를 선반영하여 전사 EV/EBITDA Target 22x~24x 산출.</p>
+                </div>
+                <div class="w-full bg-indigo-600 text-white text-sm py-3 rounded-lg font-bold shadow-md">현재의 막대한 CapEx 투자가 증명하는 하방 안전성 입증</div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow border border-slate-200 p-6 flex flex-col items-center text-center opacity-90 h-full justify-between">
+                <div>
+                    <span class="text-indigo-400 font-bold uppercase text-xs tracking-widest mb-1 block">Bull Case</span>
+                    <h4 class="text-indigo-900 font-black text-2xl mb-4">$480 - $600+</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">사이버캡 규제 조기 철폐에 따른 로보택시 마진 폭발, 옵티머스 B2B 조기 납품. 테라팹 내재화 가치 인정. 물리적 AI 플랫폼 1위 위상으로 빅테크 독점 멀티플(40x+) 부여.</p>
+                </div>
+                <div class="w-full bg-indigo-100 text-indigo-700 text-xs py-2 rounded font-bold">무한 확장형 AI 생태계 TAM 선점 가치</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="bg-slate-900 text-slate-500 text-center py-8 text-xs">
+    <div class="max-w-5xl mx-auto px-6">
+        <p>본 자료는 기관 투자자용 웹 프레젠테이션으로 제작되었으며, 미래에 대한 추정치를 포함하고 있어 실제 결과와 다를 수 있습니다.</p>
+        <p class="mt-2">&copy; 2026 wal!street Research. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.slide-up').forEach((elem) => {
+            observer.observe(elem);
+        });
+    });
+
+    const ctx = document.getElementById('financialChart').getContext('2d');
+    const financialChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['2023', '2024', '2025', '2026(E)'],
+            datasets: [
+                {
+                    label: '전사 매출액 (Billion $)',
+                    data: [96.7, 98.5, 102.5, 107.25],
+                    backgroundColor: '#cbd5e1', hoverBackgroundColor: '#94a3b8', borderRadius: 4, yAxisID: 'y', order: 2
+                },
+                {
+                    label: '영업이익률 (%)',
+                    data: [9.2, 8.5, 7.5, 9.0],
+                    type: 'line', borderColor: '#4f46e5', backgroundColor: '#4f46e5', borderWidth: 3,
+                    pointBackgroundColor: '#fff', pointBorderColor: '#4f46e5', pointBorderWidth: 2,
+                    pointRadius: 5, pointHoverRadius: 7, tension: 0.3, yAxisID: 'y1', order: 1
+                }
+            ]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+                legend: { position: 'bottom', labels: { font: { family: "'Noto Sans KR', sans-serif" }, color: '#334155' } },
+                tooltip: { titleFont: { family: "'Noto Sans KR', sans-serif" }, bodyFont: { family: "'Noto Sans KR', sans-serif" }, padding: 12, backgroundColor: 'rgba(15, 23, 42, 0.9)', cornerRadius: 8 }
+            },
+            scales: {
+                x: { grid: { display: false }, ticks: { font: { family: "'Noto Sans KR', sans-serif", weight: 'bold' }, color: '#475569' } },
+                y: {
+                    type: 'linear', display: true, position: 'left',
+                    title: { display: true, text: '매출액 (Billion $)', color: '#64748b', font: { family: "'Noto Sans KR', sans-serif", size: 12 } },
+                    grid: { borderDash: [4, 4], color: '#f1f5f9' }
+                },
+                y1: {
+                    type: 'linear', display: true, position: 'right',
+                    title: { display: true, text: '영업이익률 (%)', color: '#4f46e5', font: { family: "'Noto Sans KR', sans-serif", size: 12, weight: 'bold' } },
+                    grid: { drawOnChartArea: false }
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>
