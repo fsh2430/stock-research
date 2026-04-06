@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>와이씨켐 심층 리서치 프레젠테이션</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+fontFamily: { sans: ['"Noto Sans KR"', 'sans-serif'] },
+colors: {
+slate: { 50: '#f8fafc', 100: '#f1f5f9', 800: '#1e293b', 900: '#0f172a' },
+indigo: { 50: '#eef2ff', 100: '#e0e7ff', 600: '#4f46e5', 700: '#4338ca', 800: '#3730a3', 900: '#312e81' }
+}
+}
+}
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+.slide-up { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+.slide-up.visible { opacity: 1; transform: translateY(0); }
+html { scroll-behavior: smooth; }
+.highlight-col { background-color: #eef2ff; font-weight: 700; color: #312e81; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased overflow-x-hidden selection:bg-indigo-200">
+
+<header class="fixed top-0 left-0 w-full z-50 bg-slate-50/90 backdrop-blur-md border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="index.html" class="text-indigo-900 font-black text-xl tracking-tighter">wal!street</a>
+        <a href="index.html" class="text-slate-800 hover:text-indigo-600 font-medium text-sm transition-colors">← 메인으로</a>
+    </div>
+</header>
+
+<section class="min-h-screen flex items-center justify-center bg-indigo-900 text-slate-50 pt-16 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-indigo-500 via-indigo-900 to-transparent"></div>
+    <div class="max-w-5xl mx-auto px-6 z-10 text-center slide-up">
+        <span class="inline-block py-1 px-3 rounded-full bg-indigo-800 text-indigo-100 text-sm font-bold tracking-widest mb-6 border border-indigo-700">와이씨켐 (112290 KOSDAQ)</span>
+        <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight tracking-tight">와이씨켐<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-200 to-indigo-400">Deep-Dive Analysis</span></h1>
+        <p class="text-xl md:text-2xl text-indigo-100 font-light max-w-3xl mx-auto leading-relaxed">
+            차세대 반도체 소재의 변곡점과 밸류에이션 재평가.<br>과거 니치 시장의 개척자에서 EUV 및 유리기판 시장의 선두주자로 도약하며 폭발적인 영업 레버리지 구간에 진입합니다.
+        </p>
+    </div>
+</section>
+
+<section class="py-24 max-w-7xl mx-auto px-6">
+    <div class="mb-16 text-center slide-up">
+        <h2 class="text-3xl font-black text-slate-900 mb-4">Executive Summary</h2>
+        <div class="w-16 h-1 bg-indigo-600 mx-auto"></div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-indigo-600 relative overflow-hidden slide-up delay-100 hover:-translate-y-1 transition-transform duration-300">
+            <span class="absolute -top-4 -right-2 text-9xl font-black text-slate-50 opacity-80 select-none">1</span>
+            <div class="relative z-10">
+                <h3 class="text-xl font-bold text-indigo-900 mb-3">고수익 하이엔드 시장으로의 체질 개선</h3>
+                <p class="text-slate-600 leading-relaxed">범용 세정액 중심의 니치 시장 개척자에서 EUV 린스 및 유리기판 코팅 소재 등 기술 장벽이 극도로 높은 고부가가치 시장의 대체 불가능한 선두주자로 도약하고 있습니다.</p>
+            </div>
+        </div>
+        <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-indigo-600 relative overflow-hidden slide-up delay-200 hover:-translate-y-1 transition-transform duration-300">
+            <span class="absolute -top-4 -right-2 text-9xl font-black text-slate-50 opacity-80 select-none">2</span>
+            <div class="relative z-10">
+                <h3 class="text-xl font-bold text-indigo-900 mb-3">AI 폼팩터 혁신의 핵심 수혜 (Policy Tailwind)</h3>
+                <p class="text-slate-600 leading-relaxed">AI 데이터센터 전력난 해결을 위한 유리기판 도입 가속화 및 지정학적 무역 제재(IRA, AD/CVD 등)에 따른 공급망 재편의 강력한 반사이익을 기대할 수 있습니다.</p>
+            </div>
+        </div>
+        <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-indigo-600 relative overflow-hidden slide-up delay-300 hover:-translate-y-1 transition-transform duration-300">
+            <span class="absolute -top-4 -right-2 text-9xl font-black text-slate-50 opacity-80 select-none">3</span>
+            <div class="relative z-10">
+                <h3 class="text-xl font-bold text-indigo-900 mb-3">데이터 기반의 진입장벽과 락인(Lock-in) 효과</h3>
+                <p class="text-slate-600 leading-relaxed">수만 번의 합성 데이터베이스와 피드백을 통해 단기간에 복제 불가능한 해자를 구축했으며, 한 번 승인(Qual) 시 웨이퍼 투입량에 비례해 꾸준히 수익이 발생하는 ARR(반복 매출) 구조를 갖췄습니다.</p>
+            </div>
+        </div>
+        <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-indigo-600 relative overflow-hidden slide-up delay-400 hover:-translate-y-1 transition-transform duration-300">
+            <span class="absolute -top-4 -right-2 text-9xl font-black text-slate-50 opacity-80 select-none">4</span>
+            <div class="relative z-10">
+                <h3 class="text-xl font-bold text-indigo-900 mb-3">2026년 대규모 증설과 영업 레버리지 폭발</h3>
+                <p class="text-slate-600 leading-relaxed">자기자본의 31%에 달하는 138억 원의 선제 투자가 하반기부터 실적으로 직결됩니다. 매출이 고정비를 상회하며 BEP를 돌파하는 순간 이익률이 폭발적으로 상승하는 턴어라운드 구간에 진입합니다.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-24 bg-slate-100 border-y border-slate-200">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="mb-16 text-center slide-up">
+            <h2 class="text-3xl font-black text-slate-900 mb-4">Business Model Evolution</h2>
+            <div class="w-16 h-1 bg-indigo-600 mx-auto mb-6"></div>
+            <p class="text-slate-600 max-w-2xl mx-auto">니치 시장에서 시작해 EUV 공정 소재로 기술력을 입증하고, 궁극적으로 어드밴스드 패키징(유리기판) 밸류체인으로 잠재 시장(TAM)을 무한히 확장하는 3단계 비즈니스 진화 궤적을 보입니다.</p>
+        </div>
+
+        <div class="flex flex-col md:flex-row items-center justify-between relative slide-up delay-200 max-w-5xl mx-auto">
+            <div class="w-full md:w-1/3 flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-sm border border-slate-200 z-10 relative">
+                <div class="w-16 h-16 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center font-bold text-xl mb-4 shadow-inner">Niche</div>
+                <h4 class="font-bold text-slate-800 mb-2">범용 화학 & 세정</h4>
+                <p class="text-sm text-slate-500">진입장벽이 비교적 낮은 범용 화학제품으로 대형 칩 메이커 공급망에 우회 진입하여 신뢰성(레퍼런스)을 축적한 초기 국면입니다.</p>
+            </div>
+
+            <div class="hidden md:flex flex-1 items-center justify-center z-0 -mx-4">
+                <div class="h-1 w-full bg-gradient-to-r from-slate-300 to-indigo-300 relative">
+                    <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-3 h-3 border-t-2 border-r-2 border-indigo-400 transform rotate-45"></div>
+                </div>
+            </div>
+            <div class="md:hidden h-12 w-1 bg-gradient-to-b from-slate-300 to-indigo-300 relative my-2"></div>
+
+            <div class="w-full md:w-1/3 flex flex-col items-center text-center p-6 bg-indigo-50 rounded-xl shadow-md border border-indigo-200 z-10 relative transform md:-translate-y-4">
+                <div class="w-16 h-16 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-xl mb-4 shadow-lg">EUV</div>
+                <h4 class="font-bold text-indigo-900 mb-2">EUV 고부가 소재</h4>
+                <p class="text-sm text-indigo-700">미세화 한계를 돌파하기 위한 EUV 전용 린스 및 ArF 포토레지스트 국산화에 성공하며 기술적 해자와 수익성을 동시에 확보했습니다.</p>
+            </div>
+
+            <div class="hidden md:flex flex-1 items-center justify-center z-0 -mx-4">
+                <div class="h-1 w-full bg-gradient-to-r from-indigo-300 to-indigo-600 relative">
+                    <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-3 h-3 border-t-2 border-r-2 border-indigo-600 transform rotate-45"></div>
+                </div>
+            </div>
+            <div class="md:hidden h-12 w-1 bg-gradient-to-b from-indigo-300 to-indigo-600 relative my-2"></div>
+
+            <div class="w-full md:w-1/3 flex flex-col items-center text-center p-6 bg-indigo-900 rounded-xl shadow-xl border border-indigo-800 z-10 relative">
+                <div class="w-16 h-16 rounded-full bg-indigo-100 text-indigo-900 flex items-center justify-center font-bold text-xl mb-4 shadow-inner">Glass</div>
+                <h4 class="font-bold text-white mb-2">어드밴스드 패키징</h4>
+                <p class="text-sm text-indigo-200">AI 반도체 전력/발열 제어를 위한 유리기판 및 TSV 슬러리 코팅/세정 시장을 개척하여 후공정 영역으로 수조원대 크로스셀링을 시도합니다.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-24 max-w-5xl mx-auto px-6">
+    <div class="mb-12 slide-up">
+        <h2 class="text-3xl font-black text-slate-900 mb-4">Paradigm Shift: 과거 vs 현재</h2>
+        <p class="text-slate-600">단순 소모성 원재료 공급사에서 구조적 이익률 성장이 가능한 대체 불가능한 하이엔드 소재 파트너로 진화하는 와이씨켐의 펀더멘털 시프트 요약.</p>
+    </div>
+    
+    <div class="overflow-x-auto rounded-xl shadow-lg border border-slate-200 slide-up delay-200">
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr class="bg-slate-800 text-slate-50 text-sm uppercase tracking-wide">
+                    <th class="p-5 border-b border-slate-700 w-1/4">비교 항목</th>
+                    <th class="p-5 border-b border-slate-700 w-3/8 bg-slate-700">과거 (레거시 비즈니스)</th>
+                    <th class="p-5 border-b border-slate-700 w-3/8 bg-indigo-700 text-indigo-50">현재/미래 (어드밴스드 비즈니스)</th>
+                </tr>
+            </thead>
+            <tbody class="text-slate-700">
+                <tr class="border-b border-slate-200 hover:bg-slate-50 transition-colors">
+                    <td class="p-5 font-bold text-slate-900 bg-slate-100">타겟 시장</td>
+                    <td class="p-5">범용 화학 및 세정액 중심의 제한적 Niche 마켓</td>
+                    <td class="p-5 highlight-col">EUV 린스 및 유리기판 중심의 하이엔드 기술 과점 마켓</td>
+                </tr>
+                <tr class="border-b border-slate-200 hover:bg-slate-50 transition-colors">
+                    <td class="p-5 font-bold text-slate-900 bg-slate-100">수익 구조 (마진)</td>
+                    <td class="p-5">원재료 가격 연동(R² 0.85)에 따른 높은 이익 변동성</td>
+                    <td class="p-5 highlight-col">고부가 제품 믹스 개선을 통한 폭발적인 영업 레버리지 및 마진 방어력</td>
+                </tr>
+                <tr class="border-b border-slate-200 hover:bg-slate-50 transition-colors">
+                    <td class="p-5 font-bold text-slate-900 bg-slate-100">타겟 공정 (TAM)</td>
+                    <td class="p-5">전공정(Front-end) 노광/식각 공정 위주 국한</td>
+                    <td class="p-5 highlight-col">후공정(Back-end) TSV 및 차세대 패키징 영역으로 시장 무한 확장</td>
+                </tr>
+                <tr class="hover:bg-slate-50 transition-colors">
+                    <td class="p-5 font-bold text-slate-900 bg-slate-100">매출 지속성</td>
+                    <td class="p-5">저부가 수율 제고 목적의 단순 소모성 화학 자재 경쟁</td>
+                    <td class="p-5 highlight-col">방대한 합성 데이터 기반의 대체 불가능한 락인(Lock-in)형 ARR 구조</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="py-24 bg-slate-900 text-slate-50">
+    <div class="max-w-5xl mx-auto px-6">
+        <div class="mb-16 text-center slide-up">
+            <h2 class="text-3xl font-black text-white mb-4">Growth Timeline</h2>
+            <div class="w-16 h-1 bg-indigo-500 mx-auto"></div>
+        </div>
+
+        <div class="relative border-l-2 border-indigo-700 ml-4 md:ml-1/2 space-y-12 slide-up delay-200">
+            <div class="relative pl-8 md:pl-0">
+                <div class="absolute w-4 h-4 bg-indigo-500 rounded-full -left-[9px] md:left-1/2 md:-ml-[9px] top-1 ring-4 ring-slate-900"></div>
+                <div class="md:w-1/2 md:pr-12 md:text-right">
+                    <span class="text-indigo-400 font-black text-xl tracking-wider block mb-2">2024 ~ 2025</span>
+                    <h4 class="text-lg font-bold text-white mb-2">어닝 쇼크와 고정비의 덫 (성장통)</h4>
+                    <p class="text-slate-400 text-sm">기대했던 차세대 신제품 양산이 고객사 스케줄 변경으로 기약 없이 순연. 선행 투입된 대규모 R&D 및 제조 설비의 감가상각비 압박으로 역(逆)레버리지가 발생하여 2년 연속 영업적자를 기록했습니다.</p>
+                </div>
+            </div>
+            
+            <div class="relative pl-8 md:pl-0">
+                <div class="absolute w-4 h-4 bg-red-500 rounded-full -left-[9px] md:left-1/2 md:-ml-[9px] top-1 ring-4 ring-slate-900"></div>
+                <div class="md:w-1/2 md:ml-auto md:pl-12">
+                    <span class="text-red-400 font-black text-xl tracking-wider block mb-2">2026. 03</span>
+                    <h4 class="text-lg font-bold text-white mb-2">모험 자본 집행과 자신감 피력</h4>
+                    <p class="text-slate-400 text-sm">자기자본 대비 31%에 달하는 138억 원 규모의 제5공장 시설 증설 공시. 확실한 고객사 퀄(Qual) 테스트 통과와 발주 없이는 불가능한 보수적 산업 특성상 턴어라운드의 강력한 시그널입니다. 동시 단행된 1:2 액면분할은 수급 개선의 포석입니다.</p>
+                </div>
+            </div>
+
+            <div class="relative pl-8 md:pl-0">
+                <div class="absolute w-5 h-5 bg-indigo-400 rounded-full -left-[10px] md:left-1/2 md:-ml-[10px] top-1 ring-4 ring-slate-900 shadow-[0_0_15px_rgba(129,140,248,0.6)]"></div>
+                <div class="md:w-1/2 md:pr-12 md:text-right">
+                    <span class="text-indigo-300 font-black text-2xl tracking-wider block mb-2">2026. 하반기</span>
+                    <h4 class="text-xl font-bold text-white mb-2">양산 본격화 및 손익분기점 돌파</h4>
+                    <p class="text-slate-300 text-sm">메모리 고객사의 가동률 정상화와 더불어 EUV 린스 및 유리기판 파일럿 물량이 매출로 꽂히기 시작합니다. 매출원가율이 60%대로 급감하며 증가하는 매출액이 한계 비용 없이 곧바로 두 자릿수 영업이익률로 직결되는 레버리지 초입 구간입니다.</p>
+                </div>
+            </div>
+
+            <div class="relative pl-8 md:pl-0">
+                <div class="absolute w-4 h-4 border-2 border-indigo-500 bg-slate-900 rounded-full -left-[9px] md:left-1/2 md:-ml-[9px] top-1 ring-4 ring-slate-900"></div>
+                <div class="md:w-1/2 md:ml-auto md:pl-12">
+                    <span class="text-slate-400 font-black text-xl tracking-wider block mb-2">2027 ~</span>
+                    <h4 class="text-lg font-bold text-white mb-2">유리기판 밸류체인 장악 및 멀티플 리레이팅</h4>
+                    <p class="text-slate-400 text-sm">Tier-1 글로벌 팹리스 및 기판 제조사의 유리기판 본격 상용화. 기존 전공정 TAM을 압도하는 수조 원 규모의 신규 어드밴스드 패키징 시장에서 핵심 코팅/세정 소재 공급사로서 막대한 수혜가 예상됩니다.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-24 bg-slate-50">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="mb-16 text-center slide-up">
+            <h2 class="text-3xl font-black text-slate-900 mb-4">Financial Projection & Valuation</h2>
+            <div class="w-16 h-1 bg-indigo-600 mx-auto"></div>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-lg border border-slate-200 mb-16 slide-up delay-200">
+            <div class="mb-6 text-center">
+                <h3 class="text-lg font-bold text-slate-800">매출 및 영업이익률 추이 전망</h3>
+                <p class="text-xs text-slate-500">단위: 억 원 (막대), % (선)</p>
+            </div>
+            <div class="relative h-80 w-full">
+                <canvas id="financialChart"></canvas>
+            </div>
+        </div>
+
+        <div class="mb-8 text-center slide-up delay-300">
+            <h3 class="text-2xl font-bold text-slate-900 mb-2">Valuation Scenarios</h3>
+            <p class="text-slate-600 text-sm">액면분할(1000원→500원) 후 환산 주가 기준 / 전환사채(CB) 200억 완전 희석 및 EV/EBITDA 피어 그룹 연동 모델링</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end slide-up delay-400">
+            <div class="bg-white rounded-xl shadow border border-slate-200 p-6 flex flex-col items-center text-center opacity-90 h-full justify-between">
+                <div>
+                    <span class="text-slate-500 font-bold uppercase text-xs tracking-widest mb-1 block">Bear Case</span>
+                    <h4 class="text-slate-800 font-black text-2xl mb-4">9,500원 이하</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">유리기판 도입 공정이 1년 이상 지연되고 레거시 물량 단가 인하 압력이 거세지는 시나리오. D&A 폭발로 적자 지속 및 CB 조기 상환 압박 우려.</p>
+                </div>
+                <div class="w-full bg-slate-100 text-slate-500 text-xs py-2 rounded font-medium">분할 후 11,000원 하회 시 강한 하방 안전마진 확보</div>
+            </div>
+
+            <div class="bg-indigo-50 rounded-xl shadow-2xl border-2 border-indigo-600 p-8 flex flex-col items-center text-center transform md:scale-105 z-10 h-full justify-between relative overflow-hidden">
+                <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-indigo-400 to-indigo-700"></div>
+                <div>
+                    <span class="text-indigo-600 font-black uppercase text-sm tracking-widest mb-1 block">Base Case</span>
+                    <h4 class="text-indigo-900 font-black text-3xl mb-4">16,500원 밴드</h4>
+                    <p class="text-indigo-800 text-sm leading-relaxed mb-6 font-medium">유리기판 및 EUV 소재의 점진적 채택. 매출 1,250억 회복 및 보수적 원가율 70% 통제. 피어(필옵틱스 등) 평균 EV/EBITDA 13.5배 적용.</p>
+                </div>
+                <div class="w-full bg-indigo-600 text-white text-sm py-3 rounded-lg font-bold shadow-md">상승 여력은 존재하나, 증설 라인 숫자 확인 후 진입 권고</div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow border border-slate-200 p-6 flex flex-col items-center text-center opacity-90 h-full justify-between">
+                <div>
+                    <span class="text-indigo-400 font-bold uppercase text-xs tracking-widest mb-1 block">Bull Case</span>
+                    <h4 class="text-indigo-900 font-black text-2xl mb-4">24,000원 이상</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-4">AI 전력난 심화로 유리기판 수요 폭발. 와이씨켐 소재가 Tier-1 기판사의 표준(De-facto)으로 채택되며 원가율 60% 진입, 할증 멀티플 15배 적용.</p>
+                </div>
+                <div class="w-full bg-indigo-100 text-indigo-700 text-xs py-2 rounded font-bold">패러다임 전환의 최대 수혜를 반영한 강력 매수 구간</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="bg-slate-900 text-slate-500 text-center py-8 text-xs">
+    <div class="max-w-5xl mx-auto px-6">
+        <p>본 자료는 기관 투자자용 웹 프레젠테이션으로 제작되었으며, 미래에 대한 추정치를 포함하고 있어 실제 결과와 다를 수 있습니다.</p>
+        <p class="mt-2">&copy; 2026 wal!street Research. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.slide-up').forEach((elem) => {
+            observer.observe(elem);
+        });
+    });
+
+    const ctx = document.getElementById('financialChart').getContext('2d');
+    const financialChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['2024', '2025', '2026(E)', '2027(E)'],
+            datasets: [
+                {
+                    label: '매출액 (억 원)',
+                    data: [703, 830, 1250, 1600],
+                    backgroundColor: '#cbd5e1', hoverBackgroundColor: '#94a3b8', borderRadius: 4, yAxisID: 'y', order: 2
+                },
+                {
+                    label: '영업이익률 (%)',
+                    data: [-11.7, -7.0, 9.2, 18.0],
+                    type: 'line', borderColor: '#4f46e5', backgroundColor: '#4f46e5', borderWidth: 3,
+                    pointBackgroundColor: '#fff', pointBorderColor: '#4f46e5', pointBorderWidth: 2,
+                    pointRadius: 5, pointHoverRadius: 7, tension: 0.3, yAxisID: 'y1', order: 1
+                }
+            ]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+                legend: { position: 'bottom', labels: { font: { family: "'Noto Sans KR', sans-serif" }, color: '#334155' } },
+                tooltip: { titleFont: { family: "'Noto Sans KR', sans-serif" }, bodyFont: { family: "'Noto Sans KR', sans-serif" }, padding: 12, backgroundColor: 'rgba(15, 23, 42, 0.9)', cornerRadius: 8 }
+            },
+            scales: {
+                x: { grid: { display: false }, ticks: { font: { family: "'Noto Sans KR', sans-serif", weight: 'bold' }, color: '#475569' } },
+                y: {
+                    type: 'linear', display: true, position: 'left',
+                    title: { display: true, text: '매출액 (억 원)', color: '#64748b', font: { family: "'Noto Sans KR', sans-serif", size: 12 } },
+                    grid: { borderDash: [4, 4], color: '#f1f5f9' }
+                },
+                y1: {
+                    type: 'linear', display: true, position: 'right',
+                    title: { display: true, text: '영업이익률 (%)', color: '#4f46e5', font: { family: "'Noto Sans KR', sans-serif", size: 12, weight: 'bold' } },
+                    grid: { drawOnChartArea: false }
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>
