@@ -8,27 +8,22 @@ def update_index():
     files = [f for f in os.listdir('.') if f.endswith('.html') and f != 'index.html']
     report_data = []
     
-    # 정규식 패턴 (날짜 및 마켓/코드)
     date_pattern = re.compile(r'(202\d[\.\-]\d{2}[\.\-]\d{2})')
-    # 코드와 KOSPI/KOSDAQ 사이에 공백이나 기호(|, /)가 있어도 찾을 수 있도록 개선
-    market_pattern = re.compile(r'([A-Z0-9]{4,6}\s*[\/\|]?\s*(?:KOSPI|KOSDAQ|NASDAQ|NYSE|AMEX))', re.IGNORECASE)
+    # 영문 티커(미국주식) 또는 6자리 숫자(한국 종목코드) + 코스피/코스닥 한글 표기 대응
+    market_pattern = re.compile(r'([A-Z]{1,6}\s*[\/\|]?\s*(?:NASDAQ|NYSE|AMEX)|\b\d{6}\b(?:\s*[\/\|]?\s*(?:KOSPI|KOSDAQ|코스피|코스닥))?)', re.IGNORECASE)
 
     for file in files:
         with open(file, 'r', encoding='utf-8') as f:
             soup = BeautifulSoup(f, 'html.parser')
             
-            # 1. 제목 추출 (띄어쓰기로 자르지 않고 불필요한 뒷말만 제거)
-            title_tag = soup.find('title')
-            if title_tag:
-                title = title_tag.text.replace('심층 리서치 프레젠테이션', '').strip()
-            else:
-                title = file.replace('.html', '')
+            # 1. 제목 추출: 파일명을 그대로 사용하여 가장 정확하게 표시 (예: "LS ELECTRIC.html" -> "LS ELECTRIC")
+            title = file.replace('.html', '')
             
-            # 요약 추출
+            # 2. 요약 추출
             summary_tag = soup.find('p', class_=re.compile("text-xl"))
             summary = summary_tag.text.strip().split('\n')[0] if summary_tag else "요약 정보가 없습니다."
             
-            # HTML 본문 텍스트를 줄바꿈 기준으로 분리 (빈 줄 제거)
+            # 본문 분리 (빈 줄 제외)
             body_element = soup.body if soup.body else soup
             raw_lines = [line.strip() for line in body_element.get_text(separator='\n').split('\n') if line.strip()]
             
@@ -36,32 +31,35 @@ def update_index():
             sector_str = "리포트"
             market_str = "Market 정보"
 
-            # 2. 날짜 및 섹터 추출
+            # 3. 날짜, 섹터, 종목코드 추출
             for i, line in enumerate(raw_lines):
-                date_match = date_pattern.search(line)
-                if date_match:
-                    date_str = date_match.group(1)
-                    
-                    # 섹터 찾기: 날짜가 있는 곳에서 위쪽으로 거슬러 올라가며 찾음
-                    for j in range(i-1, -1, -1):
-                        candidate = raw_lines[j]
-                        # 15자 이내의 짧은 단어이고, 제목과 똑같지 않으며 숫자가 아닌 것을 섹터로 간주
-                        if 0 < len(candidate) <= 15 and candidate not in title and not candidate.isnumeric():
-                            sector_str = candidate
-                            break
-                    break
-            
-            # 날짜가 없으면 파일 업로드 날짜 사용
+                # 날짜 및 섹터 찾기
+                if not date_str:
+                    date_match = date_pattern.search(line)
+                    if date_match:
+                        date_str = date_match.group(1)
+                        
+                        # 섹터 찾기: 날짜 위쪽 라인 탐색
+                        for j in range(i-1, -1, -1):
+                            candidate = raw_lines[j].strip()
+                            # 20자 이내, 제목과 다르고, 연도/종목코드 같은 4자리 이상 숫자가 없는 문자열 (2차전지 등은 허용)
+                            if candidate and len(candidate) <= 20 and candidate != title and not re.search(r'\d{4}', candidate):
+                                # 불필요한 기본 문구 제외
+                                if '리서치' not in candidate and '프레젠테이션' not in candidate and 'wal!street' not in candidate.lower():
+                                    sector_str = candidate
+                                    break
+                
+                # 종목코드 찾기
+                if market_str == "Market 정보":
+                    market_match = market_pattern.search(line)
+                    if market_match:
+                        # 추출 후 공백 정리 및 대문자화, 코스피/코스닥 한글을 영문으로 통일
+                        raw_market = re.sub(r'\s+', ' ', market_match.group(1)).upper()
+                        market_str = raw_market.replace('코스피', 'KOSPI').replace('코스닥', 'KOSDAQ')
+
             if not date_str:
                 mtime = os.path.getmtime(file)
                 date_str = datetime.fromtimestamp(mtime).strftime('%Y.%m.%d')
-
-            # 3. 마켓 및 종목코드 추출
-            for line in raw_lines:
-                market_match = market_pattern.search(line)
-                if market_match:
-                    market_str = market_match.group(1).upper()
-                    break
             
             report_data.append({
                 "id": file,
@@ -75,7 +73,6 @@ def update_index():
     # 날짜 최신순 정렬
     report_data.sort(key=lambda x: x['date'], reverse=True)
 
-    # index.html 업데이트
     with open('index.html', 'r', encoding='utf-8') as f:
         html_content = f.read()
 
